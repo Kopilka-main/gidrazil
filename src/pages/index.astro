@@ -1,193 +1,475 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-
-const services = [
-  { icon: '🚿', title: 'Комплексная мойка', desc: 'Кузов, диски, стёкла, чернение шин — за 30 минут' },
-  { icon: '✨', title: 'Химчистка салона', desc: 'Полная и экспресс. Удаляем пятна и запахи' },
-  { icon: '🛡', title: 'Полироль и защита', desc: 'Жидкое стекло, керамика, нанопокрытие' },
-  { icon: '⚡', title: 'Экспресс-мойка', desc: 'За 15 минут — кузов и стёкла' },
-];
-
-const features = [
-  { num: '5+', label: 'лет на рынке' },
-  { num: '15K', label: 'довольных клиентов' },
-  { num: '4.9', label: 'средняя оценка' },
-  { num: '24/7', label: 'работаем без выходных' },
-];
 ---
-<BaseLayout>
-  <section class="hero">
-    <div class="container">
-      <div class="hero-grid">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ГИДРАЗИЛ — детейлинг-студия в Москве</title>
+<meta name="description" content="Гидразил — премиум-детейлинг: тонировка, оклейка плёнкой, полировка, химчистка, реставрация салона. Запись и консъерж-сервис в пределах ТТК." />
+<link rel="stylesheet" href={`${base}/assets/css/styles.css`} />
+</head>
+<body>
+
+<!-- ─────────────────────────  HEADER  ───────────────────────── -->
+<header class="site-header">
+  <div class="shell-wide row">
+    <a class="logo" href={`${base}/`} aria-label="Гидразил — на главную">
+      <span class="mark" aria-hidden="true"></span>
+      гидразил
+    </a>
+
+    <nav class="main-nav" aria-label="Основная навигация">
+      <a href="#about">о нас</a>
+      <a href="#services">услуги</a>
+      <a href="#pricing">цены</a>
+      <a href="#booking">записаться</a>
+      <a href="#works">наши работы</a>
+      <a href="#extras">доп оборудование</a>
+      <a href="#contacts">контакты</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="icon-btn" href="https://max.ru" target="_blank" rel="noopener" aria-label="МАХ">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19 L4 5 L8 5 L12 12 L16 5 L20 5 L20 19" />
+        </svg>
+      </a>
+      <a class="icon-btn" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 4 L2 11 L9 14 L18 7 L11 16 L15 19 L21 4 Z" />
+        </svg>
+      </a>
+      <a class="phone-link" href="tel:+74951234567">
+        <span class="dot" aria-hidden="true"></span>
+        +7 495 123 45 67
+      </a>
+      <a class="btn btn-primary btn-sm arrow-after" href="#booking">Запись</a>
+    </div>
+  </div>
+</header>
+
+<!-- ─────────────────────────  HERO  ───────────────────────── -->
+<section class="hero" id="about">
+  <div class="shell-wide grid">
+    <div>
+      <div class="hero-tag">Детейлинг-студия · Москва · с 2017</div>
+      <h1>
+        <span class="pill">Покрытие</span><br />
+        <span class="accent-word">безупречно</span>,<br />
+        работа — <span style="font-style:italic;font-weight:300;letter-spacing:-0.02em;text-transform:none">точно по часам</span>
+      </h1>
+      <div style="margin-top:36px;display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-accent btn-lg arrow-after" href="#booking">Записаться</a>
+        <a class="btn btn-ghost btn-lg" href="#pricing">Рассчитать стоимость</a>
+      </div>
+    </div>
+
+    <div class="meta">
+      <p class="lede">
+        Защитные плёнки, керамика, реставрация — для владельцев, для которых
+        машина не транспорт, а часть распорядка. Один бокс — одна работа.
+      </p>
+      <div class="stats">
+        <div class="stat">
+          <div class="num">2 140</div>
+          <div class="lbl">авто прошло через бокс</div>
+        </div>
+        <div class="stat">
+          <div class="num">94<span style="font-size:18px;letter-spacing:0">%</span></div>
+          <div class="lbl">клиентов возвращаются</div>
+        </div>
+        <div class="stat">
+          <div class="num">5 <span style="font-size:18px">лет</span></div>
+          <div class="lbl">гарантия на полиуретан</div>
+        </div>
+        <div class="stat">
+          <div class="num">24/7</div>
+          <div class="lbl">консъерж-приёмка</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────  MARQUEE  ───────────────────────── -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>3M Crystalline</span><span>SunTek PPF</span><span>STEK Dynoshield</span><span>Gtechniq Crystal Serum</span><span>Soft99 Fusso Coat</span><span>Koch-Chemie</span><span>Meguiar's Mirror Glaze</span><span>Sonax CC36</span><span>3M Crystalline</span><span>SunTek PPF</span><span>STEK Dynoshield</span><span>Gtechniq Crystal Serum</span><span>Soft99 Fusso Coat</span><span>Koch-Chemie</span><span>Meguiar's Mirror Glaze</span><span>Sonax CC36</span>
+  </div>
+</div>
+
+<!-- ─────────────────────────  PROMO CAROUSEL  ───────────────────────── -->
+<section class="block" id="promo">
+  <div class="shell-wide">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow">Акции <span class="dot">·</span> Спецпредложения <span class="dot">·</span> <span class="accent">Лето–осень 2026</span></div>
+        <h2>Сезонные предложения<br />на ближайший месяц</h2>
+      </div>
+      <div class="right">
+        <button class="icon-btn" data-prev aria-label="Назад">
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 L4 8 L10 13" /></svg>
+        </button>
+        <button class="icon-btn" data-next aria-label="Вперёд">
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3 L12 8 L6 13" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="carousel" data-carousel>
+      <div class="carousel-track-wrap">
+        <div class="carousel-track" role="region" aria-label="Акции"></div>
+      </div>
+      <div class="carousel-ctrls">
+        <div class="carousel-dots" role="tablist"></div>
+        <span class="caption">Свайп / стрелки <span style="font-family:var(--mono);color:var(--text-3)">← →</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────  SERVICES  ───────────────────────── -->
+<section class="block tight" id="services">
+  <div class="shell-wide">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow">Услуги <span class="dot">·</span> <span class="accent">9 направлений</span></div>
+        <h2>Что мы умеем</h2>
+        <p class="lede">Каждое направление — отдельный мастер и отдельный сертификат материала. Наведите на плитку, чтобы прочитать что внутри.</p>
+      </div>
+      <div class="right">
+        <a class="btn btn-ghost arrow-after" href="#pricing">Открыть прайс</a>
+      </div>
+    </div>
+
+    <div class="services-grid" data-services-grid></div>
+  </div>
+</section>
+
+<!-- ─────────────────────────  PRICING  ───────────────────────── -->
+<section class="block" id="pricing" style="background:var(--surface-2)">
+  <div class="shell-wide">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow">Прайс <span class="dot">·</span> <span class="accent">Москва 2026</span></div>
+        <h2>Стоимость <br />по вашей машине</h2>
+        <p class="lede">Выберите марку, модель и услугу — увидите цену сразу. Чекбоксами набирайте корзину, она пересчитывает итог.</p>
+      </div>
+    </div>
+
+    <div class="price-shell" data-pricing>
+
+      <div class="price-step">
+        <div class="step-head">
+          <span class="step-num">01</span>
+          <span class="step-title">Марка авто</span>
+          <span class="step-current" data-current-brand></span>
+        </div>
+        <div class="brand-grid" data-brands></div>
+      </div>
+
+      <div class="price-step">
+        <div class="step-head">
+          <span class="step-num">02</span>
+          <span class="step-title">Модель</span>
+          <span class="step-current" data-current-model></span>
+        </div>
+        <div class="model-row" data-models></div>
+      </div>
+
+      <div class="price-step">
+        <div class="step-head">
+          <span class="step-num">03</span>
+          <span class="step-title">Услуга</span>
+          <span class="step-current" data-current-svc></span>
+        </div>
+        <div class="service-tabs" data-svc-tabs></div>
+        <div data-table style="margin-top:14px"></div>
+
+        <div class="price-foot">
+          <div class="total">
+            Итого по корзине: <b data-total>0 ₽</b>
+          </div>
+          <div style="display:flex;gap:12px">
+            <a class="btn btn-ghost" href="#booking">Записаться позже</a>
+            <a class="btn btn-accent arrow-after" href="#booking">Записать на эту цену</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="body-sm" style="margin-top:18px;max-width:680px">
+      * Цена ориентировочная — окончательно фиксируется после осмотра. На размер
+      <span class="mono">XL</span> относятся внедорожники, минивэны и автомобили длиной более 5 метров.
+    </p>
+  </div>
+</section>
+
+<!-- ─────────────────────────  WORKS  ───────────────────────── -->
+<section class="block" id="works">
+  <div class="shell-wide">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow">Наши работы <span class="dot">·</span> <span class="accent">Кейсы 2024–2026</span></div>
+        <h2>До <span style="font-family:var(--mono);font-size:0.7em;letter-spacing:-0.02em;color:var(--text-2);font-weight:400">→</span> после</h2>
+      </div>
+      <div class="right">
+        <a class="btn btn-ghost arrow-after" href="#booking">Прислать своё авто</a>
+      </div>
+    </div>
+
+    <div class="services-grid">
+      <a class="svc-tile size-8" href={`${base}/service?s=polnaya-okl`} style="min-height:380px">
+        <span class="ph-fill"></span>
+        <span class="ph-mark">001 · Полная оклейка</span>
+        <span class="ph-num">[case-2024-11]</span>
+        <span class="ph-art" data-svc-art="polnaya-okl"></span>
+        <h3>Porsche 911 GT3 / PPF Stek</h3>
+        <div class="svc-line">
+          <p>5 дней работы. Защитная плёнка по всему кузову с обхватом кромок дверей.</p>
+          <span class="open">Открыть кейс <span style="font-family:var(--mono)">→</span></span>
+        </div>
+      </a>
+      <a class="svc-tile size-4 flat" href={`${base}/service?s=salon`} style="min-height:380px">
+        <span class="ph-fill"></span>
+        <span class="ph-mark">002 · Реставрация салона</span>
+        <span class="ph-num">[case-2025-03]</span>
+        <span class="ph-art" data-svc-art="salon"></span>
+        <h3>BMW M5 — кожа Merino</h3>
+        <div class="svc-line">
+          <p>Перетяжка боковин и руля.</p>
+          <span class="open">Открыть <span style="font-family:var(--mono)">→</span></span>
+        </div>
+      </a>
+      <a class="svc-tile size-4" href={`${base}/service?s=tonirovka`}>
+        <span class="ph-fill"></span>
+        <span class="ph-mark">003 · Тонировка</span>
+        <span class="ph-num">[case-2025-07]</span>
+        <span class="ph-art" data-svc-art="tonirovka"></span>
+        <h3>Lexus LX 600 — атермал</h3>
+        <div class="svc-line">
+          <p>Лобовое 3M Crystalline + борта.</p>
+          <span class="open">Открыть <span style="font-family:var(--mono)">→</span></span>
+        </div>
+      </a>
+      <a class="svc-tile size-4 flat" href={`${base}/service?s=polirovka`}>
+        <span class="ph-fill"></span>
+        <span class="ph-mark">004 · Полировка</span>
+        <span class="ph-num">[case-2025-09]</span>
+        <span class="ph-art" data-svc-art="polirovka"></span>
+        <h3>Mercedes S-Class W223</h3>
+        <div class="svc-line">
+          <p>3 этапа + керамическая защита.</p>
+          <span class="open">Открыть <span style="font-family:var(--mono)">→</span></span>
+        </div>
+      </a>
+      <a class="svc-tile size-4" href={`${base}/service?s=himchistka`}>
+        <span class="ph-fill"></span>
+        <span class="ph-mark">005 · Химчистка</span>
+        <span class="ph-num">[case-2026-01]</span>
+        <span class="ph-art" data-svc-art="himchistka"></span>
+        <h3>Range Rover Sport — кожа</h3>
+        <div class="svc-line">
+          <p>Полная, с озонированием.</p>
+          <span class="open">Открыть <span style="font-family:var(--mono)">→</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────  EXTRAS  ───────────────────────── -->
+<section class="block" id="extras" style="background:var(--surface-2)">
+  <div class="shell-wide">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow">Доп. оборудование <span class="dot">·</span> <span class="accent">9 позиций</span></div>
+        <h2>Что приятно купить<br />заодно с услугой</h2>
+        <p class="lede">Подушки, чехлы, коврики и расходники — то, что мы сами используем в боксе и отдаём клиентам без наценки.</p>
+      </div>
+      <div class="right">
+        <a class="btn btn-ghost arrow-after" href="#booking">Положить в заказ</a>
+      </div>
+    </div>
+
+    <div class="extras-grid" data-extras></div>
+  </div>
+</section>
+
+<!-- ─────────────────────────  BOOKING  ───────────────────────── -->
+<section class="block" id="booking">
+  <div class="shell-wide">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow">Записаться <span class="dot">·</span> <span class="accent">Ответ в МАХ за 15 мин</span></div>
+        <h2>Оставьте заявку</h2>
+      </div>
+    </div>
+
+    <div class="booking">
+      <aside class="left">
         <div>
-          <span class="eyebrow">профессиональная автомойка</span>
-          <h1>Твоя машина будет<br/>как с салона</h1>
-          <p class="lead">Бережная мойка на современном оборудовании. Запись онлайн, без очередей, гарантия качества.</p>
-          <div class="cta-row">
-            <a href={`${base}/contacts`} class="btn">Записаться онлайн</a>
-            <a href={`${base}/prices`} class="btn btn-ghost">Смотреть цены</a>
+          <span class="chip chip-accent" style="background:rgba(255,255,255,0.10);color:#fff">
+            <span class="dot"></span> онлайн-запись
+          </span>
+          <h3 style="margin-top:18px">Заявка приходит<br />нашему мастеру в МАХ</h3>
+          <p class="body-sm" style="color:rgba(255,255,255,0.7);margin-top:14px;max-width:36ch">
+            Мы перезваниваем в течение 15 минут в рабочие часы и не больше часа в выходные.
+            Подбираем удобный слот и закрепляем за вами бокс.
+          </p>
+        </div>
+
+        <ul class="lines">
+          <li>Бесконтактная передача ключа</li>
+          <li>Курьер в пределах ТТК — бесплатно</li>
+          <li>Оплата при выдаче, наличными или картой</li>
+          <li>Если передумали — отмена за 2 часа без потерь</li>
+        </ul>
+
+        <div class="max-line">
+          <span>МАХ:</span>
+          <strong>@gidrazil_studio</strong>
+        </div>
+      </aside>
+
+      <form class="right" data-booking>
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Имя</label>
+            <input id="name" name="name" type="text" placeholder="Как к вам обращаться" required />
+          </div>
+          <div class="field">
+            <label for="phone">Телефон</label>
+            <input id="phone" name="phone" type="tel" placeholder="+7 ___ ___ __ __" required pattern="[\+\d\s\(\)\-]{7,}" />
           </div>
         </div>
-        <div class="hero-art" aria-hidden="true">
-          <div class="bubble b1"></div>
-          <div class="bubble b2"></div>
-          <div class="bubble b3"></div>
-          <div class="car">🚗</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section>
-    <div class="container">
-      <h2>Что мы делаем</h2>
-      <div class="services">
-        {services.map(s => (
-          <article class="service">
-            <div class="icon">{s.icon}</div>
-            <h3>{s.title}</h3>
-            <p>{s.desc}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="features">
-    <div class="container">
-      <div class="features-grid">
-        {features.map(f => (
-          <div>
-            <div class="num">{f.num}</div>
-            <div class="muted">{f.label}</div>
+        <div class="field-row">
+          <div class="field">
+            <label for="service">Услуга</label>
+            <select id="service" name="service">
+              <option value="">— выберите —</option>
+              <option value="tonirovka">Тонировка</option>
+              <option value="okleyka-zon">Оклейка зон риска</option>
+              <option value="polnaya-okl">Полная оклейка</option>
+              <option value="polirovka">Полировка</option>
+              <option value="himchistka">Химчистка</option>
+              <option value="deteyling">Детейлинг</option>
+              <option value="salon">Реставрация салона</option>
+              <option value="moyka">Мойка</option>
+              <option value="dop">Доп. работы</option>
+            </select>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
+          <div class="field">
+            <label for="car">Авто</label>
+            <input id="car" name="car" type="text" placeholder="BMW X5, 2023" />
+          </div>
+        </div>
 
-  <section class="cta">
-    <div class="container cta-inner">
+        <div class="field-row">
+          <div class="field">
+            <label for="date">Дата</label>
+            <input id="date" name="date" type="date" />
+          </div>
+          <div class="field">
+            <label for="time">Время</label>
+            <select id="time" name="time">
+              <option>09:00</option><option>10:30</option><option>12:00</option>
+              <option>13:30</option><option>15:00</option><option>16:30</option>
+              <option>18:00</option><option>19:30</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="message">Сообщение</label>
+          <textarea id="message" name="message" placeholder="Опишите задачу: состояние авто, пожелания, ограничения по времени."></textarea>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" required style="accent-color:var(--accent)" />
+          <span>
+            Согласен на обработку персональных данных, ознакомлен с
+            <a href="#" style="color:var(--accent);text-decoration:underline">политикой конфиденциальности</a>.
+            Заявка будет передана в МАХ оператору студии.
+          </span>
+        </label>
+
+        <div class="booking-foot">
+          <span class="body-sm">Ответ — в МАХ или звонком, как удобнее.</span>
+          <button type="submit" class="btn btn-accent btn-lg arrow-after">Записаться</button>
+        </div>
+
+        <div data-status class="body-sm" style="display:none;color:var(--accent);margin-top:6px"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────  FOOTER  ───────────────────────── -->
+<footer class="site-footer" id="contacts">
+  <div class="shell-wide">
+    <div class="grid">
       <div>
-        <h2 style="margin-bottom: 12px;">Готов записаться?</h2>
-        <p class="muted">Оставь заявку — перезвоним в течение 15 минут.</p>
+        <a class="logo" style="color:#f4f3ef" href="#">
+          <span class="mark" style="background:#f4f3ef" aria-hidden="true"></span>
+          гидразил
+        </a>
+        <p class="body-sm" style="color:rgba(244,243,239,0.6);max-width:36ch;margin-top:18px">
+          Детейлинг-студия в Москве с 2017 года. Один бокс — одна работа. Сертифицированные плёнки и составы.
+        </p>
+        <div style="margin-top:20px;display:flex;gap:8px">
+          <a class="icon-btn" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.1);color:#f4f3ef" href="https://max.ru" target="_blank" rel="noopener" aria-label="МАХ">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19 L4 5 L8 5 L12 12 L16 5 L20 5 L20 19" /></svg>
+          </a>
+          <a class="icon-btn" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.1);color:#f4f3ef" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 L2 11 L9 14 L18 7 L11 16 L15 19 L21 4 Z" /></svg>
+          </a>
+        </div>
       </div>
-      <a href={`${base}/contacts`} class="btn">Оставить заявку</a>
-    </div>
-  </section>
-</BaseLayout>
 
-<style>
-  .hero {
-    padding: 80px 0 100px;
-    background: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.15), transparent 50%);
-  }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: center;
-  }
-  .eyebrow {
-    display: inline-block;
-    padding: 6px 14px;
-    background: var(--surface);
-    color: var(--accent);
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 24px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .lead {
-    color: var(--text-dim);
-    font-size: 18px;
-    margin: 24px 0 32px;
-    max-width: 500px;
-  }
-  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
-  .hero-art {
-    position: relative;
-    aspect-ratio: 1;
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(129, 140, 248, 0.05));
-    border-radius: 32px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .car {
-    font-size: clamp(80px, 18vw, 180px);
-    z-index: 2;
-    filter: drop-shadow(0 10px 30px rgba(56, 189, 248, 0.3));
-  }
-  .bubble {
-    position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), rgba(56, 189, 248, 0.2));
-    animation: float 6s ease-in-out infinite;
-  }
-  .b1 { width: 60px; height: 60px; top: 15%; left: 15%; }
-  .b2 { width: 40px; height: 40px; top: 60%; right: 20%; animation-delay: -2s; }
-  .b3 { width: 80px; height: 80px; bottom: 10%; left: 30%; animation-delay: -4s; }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-  }
-  .services {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
-  }
-  .service {
-    padding: 28px;
-    background: var(--surface);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    transition: transform 0.2s ease, border-color 0.2s ease;
-  }
-  .service:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent);
-  }
-  .service .icon { font-size: 36px; margin-bottom: 16px; }
-  .service h3 { margin-bottom: 8px; }
-  .service p { color: var(--text-dim); font-size: 15px; }
-  .features {
-    background: var(--bg-2);
-    padding: 60px 0;
-  }
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 32px;
-    text-align: center;
-  }
-  .num {
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .muted { color: var(--text-dim); }
-  .cta-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    padding: 48px;
-    background: var(--surface);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    flex-wrap: wrap;
-  }
-  @media (max-width: 768px) {
-    .hero-grid { grid-template-columns: 1fr; }
-    .hero-art { max-width: 320px; margin: 0 auto; }
-  }
-</style>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li class="contact-line"><a href="tel:+74951234567">+7 495 123 45 67</a></li>
+          <li><a href="mailto:hello@gidrazil.ru">hello@gidrazil.ru</a></li>
+          <li style="font-family:var(--mono);font-size:13px;color:rgba(244,243,239,0.6);margin-top:8px">Пн–Сб 09:00 – 21:00<br />Вс 11:00 – 19:00</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Мессенджеры</h4>
+        <ul>
+          <li>МАХ: <span style="font-family:var(--mono)">@gidrazil_studio</span></li>
+          <li>Telegram: <span style="font-family:var(--mono)">@gidrazil</span></li>
+          <li>WhatsApp: <span style="font-family:var(--mono)">+7 495 123 45 67</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Где мы</h4>
+        <div class="map" aria-label="Карта (плейсхолдер)">
+          <div class="pin">
+            <span class="ring" aria-hidden="true"></span>
+            <span>ул. Новорогожская, 4</span>
+            <span style="opacity:0.5;margin-top:2px">Москва · м. Площадь Ильича</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <span>© <span data-year></span> гидразил · все права защищены</span>
+      <span>ОГРН 1207700000000 · ИНН 7700000000</span>
+    </div>
+  </div>
+</footer>
+
+<script is:inline define:vars={{ base }}>window.SITE_BASE = base;</script>
+<script is:inline src={`${base}/assets/js/data.js`}></script>
+<script is:inline src={`${base}/assets/js/main.js`}></script>
+</body>
+</html>

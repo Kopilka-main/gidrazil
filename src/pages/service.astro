@@ -1,0 +1,296 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Услуга — ГИДРАЗИЛ</title>
+<link rel="stylesheet" href={`${base}/assets/css/styles.css`} />
+</head>
+<body>
+
+<!-- ─────────────────────────  HEADER  ───────────────────────── -->
+<header class="site-header">
+  <div class="shell-wide row">
+    <a class="logo" href={`${base}/`} aria-label="Гидразил — на главную">
+      <span class="mark" aria-hidden="true"></span>
+      гидразил
+    </a>
+
+    <nav class="main-nav" aria-label="Основная навигация">
+      <a href={`${base}/#about`}>о нас</a>
+      <a href={`${base}/#services`}>услуги</a>
+      <a href={`${base}/#pricing`}>цены</a>
+      <a href={`${base}/#booking`}>записаться</a>
+      <a href={`${base}/#works`}>наши работы</a>
+      <a href={`${base}/#extras`}>доп оборудование</a>
+      <a href={`${base}/#contacts`}>контакты</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="icon-btn" href="https://max.ru" target="_blank" rel="noopener" aria-label="МАХ">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19 L4 5 L8 5 L12 12 L16 5 L20 5 L20 19" /></svg>
+      </a>
+      <a class="icon-btn" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 L2 11 L9 14 L18 7 L11 16 L15 19 L21 4 Z" /></svg>
+      </a>
+      <a class="phone-link" href="tel:+74951234567">
+        <span class="dot" aria-hidden="true"></span>
+        +7 495 123 45 67
+      </a>
+      <a class="btn btn-primary btn-sm arrow-after" href={`${base}/#booking`}>Запись</a>
+    </div>
+  </div>
+</header>
+
+<main data-service-page>
+
+  <!-- ─────────────────────────  HERO  ───────────────────────── -->
+  <section class="svc-hero">
+    <div class="shell-wide">
+      <nav class="crumbs" aria-label="Хлебные крошки">
+        <a href={`${base}/`}>главная</a>
+        <span class="sep">·</span>
+        <a href={`${base}/#services`}>услуги</a>
+        <span class="sep">·</span>
+        <span data-crumb-name>—</span>
+      </nav>
+
+      <div style="display:flex;align-items:baseline;gap:24px;margin-bottom:12px;flex-wrap:wrap">
+        <span class="mono" style="font-size:14px;color:var(--text-3);letter-spacing:0.04em">УСЛУГА № <span data-svc-num>00</span></span>
+        <span class="chip chip-accent">в работе сейчас 3 авто</span>
+      </div>
+      <h1 data-svc-title>ЗАГРУЗКА</h1>
+
+      <div class="meta-row">
+        <p class="lede" data-svc-short>Короткое описание услуги загружается.</p>
+        <div class="meta-bit">
+          <div class="v">от 1 день</div>
+          <div class="l">срок работ</div>
+        </div>
+        <div class="meta-bit">
+          <div class="v">5 лет</div>
+          <div class="l">гарантия</div>
+        </div>
+        <a class="btn btn-accent btn-lg arrow-after" href={`${base}/#booking`}>Записаться</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  GALLERY  ───────────────────────── -->
+  <section class="block tight">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="left">
+          <div class="eyebrow">Фото работ <span class="dot">·</span> <span class="accent">примеры по этой услуге</span></div>
+          <h2>Как это выглядит</h2>
+        </div>
+        <div class="right">
+          <span class="caption">Плейсхолдеры — реальные фото добавим</span>
+        </div>
+      </div>
+
+      <div class="svc-grid">
+        <div class="svc-photo col-8">
+          <span class="tag">До работ · общий план</span>
+          <span class="id">[01 / 04]</span>
+          <span data-svc-art></span>
+          <span class="cap">photo · 4032 × 3024 · raw</span>
+        </div>
+        <div class="svc-photo col-4">
+          <span class="tag">После · крупный план</span>
+          <span class="id">[02 / 04]</span>
+          <span data-svc-art></span>
+          <span class="cap">photo · детали</span>
+        </div>
+        <div class="svc-photo col-4">
+          <span class="tag">Этап работ</span>
+          <span class="id">[03 / 04]</span>
+          <span data-svc-art></span>
+          <span class="cap">photo · процесс</span>
+        </div>
+        <div class="svc-photo col-8">
+          <span class="tag">Результат · студийный свет</span>
+          <span class="id">[04 / 04]</span>
+          <span data-svc-art></span>
+          <span class="cap">photo · final shot</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  BODY COPY  ───────────────────────── -->
+  <section class="block">
+    <div class="shell-wide">
+      <div class="svc-body">
+        <aside class="col-meta">
+          <div class="eyebrow"><span class="accent">Как мы работаем</span></div>
+          <h3 style="margin-top:8px">Один бокс — одна работа</h3>
+          <p class="body-sm">
+            Авто заезжает на персональный пост. Мастер ведёт работу с нуля до выдачи —
+            без передачи смены, без параллельных задач. Все материалы — оригиналы,
+            сертификаты по запросу прикладываем к расчёту.
+          </p>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
+            <span class="chip">✓ Сертификаты материалов</span>
+            <span class="chip">✓ Фотоотчёт по этапам</span>
+            <span class="chip">✓ Гарантия в письменном виде</span>
+            <span class="chip">✓ Курьер ключа в пределах ТТК</span>
+          </div>
+        </aside>
+
+        <div>
+          <h3>Описание услуги</h3>
+          <p style="margin-top:16px">
+            <strong>Плейсхолдер.</strong> Здесь — подробное описание услуги: что
+            именно мы делаем, какие материалы используем, как влияет состояние авто
+            на конечный результат, на какие участки распространяется гарантия,
+            что входит в стоимость и что заказывается отдельно.
+          </p>
+          <p style="margin-top:16px">
+            Подробный текст можно разместить в 3–4 абзацах с двумя‑тремя ключевыми
+            акцентами — это даёт клиенту понять, что он получает, и снимает 80%
+            типовых вопросов до звонка.
+          </p>
+
+          <div class="svc-list" style="margin-top:32px">
+            <div class="row">
+              <span class="n">01</span>
+              <div class="t">
+                <div class="title">Приёмка и фотофиксация</div>
+                <div class="sub">Описываем состояние авто, фиксируем дефекты, согласовываем объём.</div>
+              </div>
+              <span class="v">20 мин</span>
+            </div>
+            <div class="row">
+              <span class="n">02</span>
+              <div class="t">
+                <div class="title">Подготовка</div>
+                <div class="sub">Мойка, обезжиривание, при необходимости — предварительная полировка.</div>
+              </div>
+              <span class="v">1–4 ч</span>
+            </div>
+            <div class="row">
+              <span class="n">03</span>
+              <div class="t">
+                <div class="title">Основная работа</div>
+                <div class="sub">Сам процесс по технологии производителя материала. Контроль освещения.</div>
+              </div>
+              <span class="v">от 4 ч</span>
+            </div>
+            <div class="row">
+              <span class="n">04</span>
+              <div class="t">
+                <div class="title">Контроль и выдача</div>
+                <div class="sub">Совместный осмотр под лампой, подписание акта, рекомендации.</div>
+              </div>
+              <span class="v">30 мин</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  PRICE TEASER  ───────────────────────── -->
+  <section class="block tight" style="background:var(--surface-2)">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="left">
+          <div class="eyebrow">Прайс по этой услуге <span class="dot">·</span> <span class="accent">от размера S</span></div>
+          <h2>Сколько стоит</h2>
+        </div>
+        <div class="right">
+          <a class="btn btn-ghost arrow-after" href={`${base}/#pricing`}>Полный калькулятор</a>
+        </div>
+      </div>
+      <div data-price-teaser></div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  CTA  ───────────────────────── -->
+  <section class="block tight">
+    <div class="shell-wide">
+      <div class="svc-cta">
+        <span class="eyebrow" style="color:rgba(255,255,255,0.6)"><span class="accent" style="color:#4d80ff">Записаться</span> <span class="dot">·</span> ответ в МАХ за 15 мин</span>
+        <h3>Готовы — пишите. Сомневаетесь — приезжайте на бесплатный осмотр.</h3>
+        <div class="row">
+          <a class="btn btn-accent btn-lg arrow-after" href={`${base}/#booking`}>Записаться онлайн</a>
+          <a class="btn btn-ghost btn-lg" href="tel:+74951234567" style="color:#fff;border-color:rgba(255,255,255,0.25)">+7 495 123 45 67</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  RELATED  ───────────────────────── -->
+  <section class="block">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="left">
+          <div class="eyebrow">Смежные услуги <span class="dot">·</span> <span class="accent">часто берут вместе</span></div>
+          <h2>Дальше</h2>
+        </div>
+      </div>
+      <div class="svc-rel" data-related></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─────────────────────────  FOOTER  ───────────────────────── -->
+<footer class="site-footer" id="contacts">
+  <div class="shell-wide">
+    <div class="grid">
+      <div>
+        <a class="logo" style="color:#f4f3ef" href={`${base}/`}>
+          <span class="mark" style="background:#f4f3ef" aria-hidden="true"></span>
+          гидразил
+        </a>
+        <p class="body-sm" style="color:rgba(244,243,239,0.6);max-width:36ch;margin-top:18px">
+          Детейлинг-студия в Москве с 2017 года. Один бокс — одна работа.
+        </p>
+      </div>
+
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li class="contact-line"><a href="tel:+74951234567">+7 495 123 45 67</a></li>
+          <li><a href="mailto:hello@gidrazil.ru">hello@gidrazil.ru</a></li>
+          <li style="font-family:var(--mono);font-size:13px;color:rgba(244,243,239,0.6);margin-top:8px">Пн–Сб 09:00 – 21:00<br />Вс 11:00 – 19:00</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Мессенджеры</h4>
+        <ul>
+          <li>МАХ: <span style="font-family:var(--mono)">@gidrazil_studio</span></li>
+          <li>Telegram: <span style="font-family:var(--mono)">@gidrazil</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Где мы</h4>
+        <div class="map" aria-label="Карта (плейсхолдер)">
+          <div class="pin">
+            <span class="ring" aria-hidden="true"></span>
+            <span>ул. Новорогожская, 4</span>
+            <span style="opacity:0.5;margin-top:2px">Москва</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <span>© <span data-year></span> гидразил</span>
+      <span>ОГРН 1207700000000</span>
+    </div>
+  </div>
+</footer>
+
+<script is:inline define:vars={{ base }}>window.SITE_BASE = base;</script>
+<script is:inline src={`${base}/assets/js/data.js`}></script>
+<script is:inline src={`${base}/assets/js/main.js`}></script>
+</body>
+</html>

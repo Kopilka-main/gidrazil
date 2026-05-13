@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const services = [
+  { icon: '🚿', title: 'Комплексная мойка', desc: 'Кузов, диски, стёкла, чернение шин — за 30 минут' },
+  { icon: '✨', title: 'Химчистка салона', desc: 'Полная и экспресс. Удаляем пятна и запахи' },
+  { icon: '🛡', title: 'Полироль и защита', desc: 'Жидкое стекло, керамика, нанопокрытие' },
+  { icon: '⚡', title: 'Экспресс-мойка', desc: 'За 15 минут — кузов и стёкла' },
+];
+
+const features = [
+  { num: '5+', label: 'лет на рынке' },
+  { num: '15K', label: 'довольных клиентов' },
+  { num: '4.9', label: 'средняя оценка' },
+  { num: '24/7', label: 'работаем без выходных' },
+];
+---
+<BaseLayout>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">профессиональная автомойка</span>
+          <h1>Твоя машина будет<br/>как с салона</h1>
+          <p class="lead">Бережная мойка на современном оборудовании. Запись онлайн, без очередей, гарантия качества.</p>
+          <div class="cta-row">
+            <a href={`${base}/contacts`} class="btn">Записаться онлайн</a>
+            <a href={`${base}/prices`} class="btn btn-ghost">Смотреть цены</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="bubble b1"></div>
+          <div class="bubble b2"></div>
+          <div class="bubble b3"></div>
+          <div class="car">🚗</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Что мы делаем</h2>
+      <div class="services">
+        {services.map(s => (
+          <article class="service">
+            <div class="icon">{s.icon}</div>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <div class="features-grid">
+        {features.map(f => (
+          <div>
+            <div class="num">{f.num}</div>
+            <div class="muted">{f.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container cta-inner">
+      <div>
+        <h2 style="margin-bottom: 12px;">Готов записаться?</h2>
+        <p class="muted">Оставь заявку — перезвоним в течение 15 минут.</p>
+      </div>
+      <a href={`${base}/contacts`} class="btn">Оставить заявку</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 80px 0 100px;
+    background: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.15), transparent 50%);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .eyebrow {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--surface);
+    color: var(--accent);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .lead {
+    color: var(--text-dim);
+    font-size: 18px;
+    margin: 24px 0 32px;
+    max-width: 500px;
+  }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-art {
+    position: relative;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(129, 140, 248, 0.05));
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .car {
+    font-size: clamp(80px, 18vw, 180px);
+    z-index: 2;
+    filter: drop-shadow(0 10px 30px rgba(56, 189, 248, 0.3));
+  }
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), rgba(56, 189, 248, 0.2));
+    animation: float 6s ease-in-out infinite;
+  }
+  .b1 { width: 60px; height: 60px; top: 15%; left: 15%; }
+  .b2 { width: 40px; height: 40px; top: 60%; right: 20%; animation-delay: -2s; }
+  .b3 { width: 80px; height: 80px; bottom: 10%; left: 30%; animation-delay: -4s; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  .services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .service {
+    padding: 28px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .service:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+  }
+  .service .icon { font-size: 36px; margin-bottom: 16px; }
+  .service h3 { margin-bottom: 8px; }
+  .service p { color: var(--text-dim); font-size: 15px; }
+  .features {
+    background: var(--bg-2);
+    padding: 60px 0;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 32px;
+    text-align: center;
+  }
+  .num {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .muted { color: var(--text-dim); }
+  .cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 48px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-art { max-width: 320px; margin: 0 auto; }
+  }
+</style>

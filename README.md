@@ -3,7 +3,7 @@
 Сайт детейлинг-студии на Astro. Автодеплой на GitHub Pages при каждом `git push`.
 
 - Репозиторий: https://github.com/Kopilka-main/gidrazil
-- Сайт: https://kopilka-main.github.io/gidrazil/
+- Сайт: https://hydrazil.ru
 
 ## Структура
 

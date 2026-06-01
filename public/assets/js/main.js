@@ -362,6 +362,106 @@
   }
 
   // ───────────────────────────────
+  // MOTION — trust-building hero
+  // ───────────────────────────────
+  function reducedMotion() {
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  // staggered reveal on enter-view
+  function initReveal() {
+    const els = [...document.querySelectorAll('.reveal')];
+    if (!els.length) return;
+    if (reducedMotion() || !('IntersectionObserver' in window)) {
+      els.forEach(e => e.classList.add('in'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        const el = en.target;
+        const d = parseInt(el.dataset.reveal || '0', 10);
+        el.style.transitionDelay = (d * 85) + 'ms';
+        el.classList.add('in');
+        io.unobserve(el);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+    els.forEach(e => io.observe(e));
+  }
+
+  // count-up numbers when they scroll into view
+  function initCounters() {
+    const nums = [...document.querySelectorAll('[data-count]')];
+    if (!nums.length) return;
+    const setFinal = (el) => {
+      const v = parseFloat(el.dataset.count);
+      el.textContent = el.hasAttribute('data-sep') ? formatN(v) : String(v);
+    };
+    if (reducedMotion() || !('IntersectionObserver' in window)) { nums.forEach(setFinal); return; }
+
+    const run = (el) => {
+      const target = parseFloat(el.dataset.count);
+      const sep = el.hasAttribute('data-sep');
+      const dur = 1500;
+      const t0 = performance.now();
+      const tick = (now) => {
+        const t = Math.min(1, (now - t0) / dur);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const v = Math.round(target * eased);
+        el.textContent = sep ? formatN(v) : String(v);
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => { if (en.isIntersecting) { run(en.target); io.unobserve(en.target); } });
+    }, { threshold: 0.6 });
+    nums.forEach(el => io.observe(el));
+  }
+
+  // rotating "what we do" word
+  function initRotator() {
+    const el = document.querySelector('[data-rotate]');
+    if (!el) return;
+    const words = ['тонировку', 'керамику', 'оклейку PPF', 'полировку', 'химчистку', 'реставрацию салона', 'защиту кузова'];
+    el.textContent = words[0];
+    if (reducedMotion()) return;
+    let i = 0;
+    setInterval(() => {
+      el.classList.add('swap');
+      setTimeout(() => {
+        i = (i + 1) % words.length;
+        el.textContent = words[i];
+        el.classList.remove('swap');
+      }, 400);
+    }, 2300);
+  }
+
+  // subtle cursor parallax on the hero emblem
+  function initParallax() {
+    const hero = document.querySelector('[data-hero]');
+    if (!hero || reducedMotion()) return;
+    if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
+    const layers = [...hero.querySelectorAll('[data-parallax]')];
+    if (!layers.length) return;
+    let raf = null, tx = 0, ty = 0;
+    const apply = () => {
+      raf = null;
+      layers.forEach(l => {
+        const amt = parseFloat(l.dataset.parallax) || 10;
+        l.style.transform = `translate(${(tx * amt).toFixed(1)}px, calc(-50% + ${(ty * amt).toFixed(1)}px))`;
+      });
+    };
+    hero.addEventListener('mousemove', (e) => {
+      const r = hero.getBoundingClientRect();
+      tx = (e.clientX - r.left) / r.width - 0.5;
+      ty = (e.clientY - r.top) / r.height - 0.5;
+      if (!raf) raf = requestAnimationFrame(apply);
+    });
+    hero.addEventListener('mouseleave', () => { tx = 0; ty = 0; if (!raf) raf = requestAnimationFrame(apply); });
+  }
+
+  // ───────────────────────────────
   // YEAR
   // ───────────────────────────────
   function initYear() {
@@ -379,6 +479,10 @@
     initBooking();
     initServicePage();
     initYear();
+    initReveal();
+    initCounters();
+    initRotator();
+    initParallax();
   });
 
   window.GIDRAZIL_UI = { artSVG };

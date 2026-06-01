@@ -7,6 +7,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Услуга — ГИДРАЗИЛ</title>
+<link rel="icon" type="image/png" href={`${base}/assets/img/favicon.png`} />
+<link rel="apple-touch-icon" href={`${base}/assets/img/apple-touch-icon.png`} />
 <link rel="stylesheet" href={`${base}/assets/css/styles.css`} />
 </head>
 <body>
@@ -15,7 +17,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <header class="site-header">
   <div class="shell-wide row">
     <a class="logo" href={`${base}/`} aria-label="Гидразил — на главную">
-      <span class="mark" aria-hidden="true"></span>
+      <img class="logo-emblem" src={`${base}/assets/img/logo-mark.png`} alt="" aria-hidden="true" />
       гидразил
     </a>
 
@@ -30,15 +32,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </nav>
 
     <div class="header-actions">
-      <a class="icon-btn" href="https://max.ru" target="_blank" rel="noopener" aria-label="МАХ">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19 L4 5 L8 5 L12 12 L16 5 L20 5 L20 19" /></svg>
-      </a>
-      <a class="icon-btn" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 L2 11 L9 14 L18 7 L11 16 L15 19 L21 4 Z" /></svg>
-      </a>
-      <a class="phone-link" href="tel:+74951234567">
+      <a class="phone-link" href="tel:+79995516777">
         <span class="dot" aria-hidden="true"></span>
-        +7 495 123 45 67
+        +7 999 551 6777
       </a>
       <a class="btn btn-primary btn-sm arrow-after" href={`${base}/#booking`}>Запись</a>
     </div>
@@ -214,11 +210,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <section class="block tight">
     <div class="shell-wide">
       <div class="svc-cta">
-        <span class="eyebrow" style="color:rgba(255,255,255,0.6)"><span class="accent" style="color:#4d80ff">Записаться</span> <span class="dot">·</span> ответ в МАХ за 15 мин</span>
+        <span class="eyebrow" style="color:rgba(255,255,255,0.6)"><span class="accent" style="color:#d7b16a">Записаться</span> <span class="dot">·</span> ответ в МАХ за 15 мин</span>
         <h3>Готовы — пишите. Сомневаетесь — приезжайте на бесплатный осмотр.</h3>
         <div class="row">
           <a class="btn btn-accent btn-lg arrow-after" href={`${base}/#booking`}>Записаться онлайн</a>
-          <a class="btn btn-ghost btn-lg" href="tel:+74951234567" style="color:#fff;border-color:rgba(255,255,255,0.25)">+7 495 123 45 67</a>
+          <a class="btn btn-ghost btn-lg" href="tel:+79995516777" style="color:#fff;border-color:rgba(255,255,255,0.25)">+7 999 551 6777</a>
         </div>
       </div>
     </div>
@@ -244,8 +240,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <div class="shell-wide">
     <div class="grid">
       <div>
-        <a class="logo" style="color:#f4f3ef" href={`${base}/`}>
-          <span class="mark" style="background:#f4f3ef" aria-hidden="true"></span>
+        <a class="logo" href={`${base}/`}>
+          <img class="logo-emblem" src={`${base}/assets/img/logo-mark.png`} alt="" aria-hidden="true" />
           гидразил
         </a>
         <p class="body-sm" style="color:rgba(244,243,239,0.6);max-width:36ch;margin-top:18px">
@@ -256,8 +252,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <div>
         <h4>Контакты</h4>
         <ul>
-          <li class="contact-line"><a href="tel:+74951234567">+7 495 123 45 67</a></li>
-          <li><a href="mailto:hello@gidrazil.ru">hello@gidrazil.ru</a></li>
+          <li class="contact-line"><a href="tel:+79995516777">+7 999 551 6777</a></li>
+          <li><a href="mailto:info@hydrazil.ru">info@hydrazil.ru</a></li>
           <li style="font-family:var(--mono);font-size:13px;color:rgba(244,243,239,0.6);margin-top:8px">Пн–Сб 09:00 – 21:00<br />Вс 11:00 – 19:00</li>
         </ul>
       </div>
@@ -275,8 +271,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <div class="map" aria-label="Карта (плейсхолдер)">
           <div class="pin">
             <span class="ring" aria-hidden="true"></span>
-            <span>ул. Новорогожская, 4</span>
-            <span style="opacity:0.5;margin-top:2px">Москва</span>
+            <span>Бульвар Братьев Весниных, 1</span>
+            <span style="opacity:0.5;margin-top:2px">−1 этаж · заезд через КПП</span>
           </div>
         </div>
       </div>

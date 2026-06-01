@@ -6,39 +6,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap');
 
 :root {
-  /* surfaces */
-  --bg: #ffffff;
-  --surface: #ffffff;
-  --surface-2: #f4f3ef;        /* warm paper */
-  --surface-3: #ecebe6;
-  --ink: #0b0c0e;              /* near-black */
-  --ink-soft: #14161a;
-  --ink-2: #2c2e33;
+  /* surfaces — deep warm black, smoke + bronze */
+  --bg: #08070a;
+  --surface: #100d10;
+  --surface-2: #14110f;        /* warm graphite */
+  --surface-3: #1c1813;
+  --ink: #0c0a0c;              /* darkest panel */
+  --ink-soft: #131013;        /* lifted dark panel */
+  --ink-2: #211c16;
 
-  /* text */
-  --text: #0b0c0e;
-  --text-1: #0b0c0e;
-  --text-2: #5e6168;
-  --text-3: #9a9da3;
-  --text-muted: #9a9da3;
+  /* text — warm bone on black */
+  --text: #ece6da;
+  --text-1: #ece6da;
+  --text-2: #a59c8b;
+  --text-3: #6f675a;
+  --text-muted: #6f675a;
 
   /* borders & shadows */
-  --border: rgba(11, 12, 14, 0.08);
-  --border-strong: rgba(11, 12, 14, 0.18);
-  --shadow-sm: 0 1px 2px rgba(11, 12, 14, 0.04);
-  --shadow: 0 1px 3px rgba(11, 12, 14, 0.05), 0 8px 28px rgba(11, 12, 14, 0.05);
-  --shadow-md: 0 2px 8px rgba(11, 12, 14, 0.06), 0 16px 40px rgba(11, 12, 14, 0.08);
-  --shadow-lg: 0 24px 64px rgba(11, 12, 14, 0.14);
+  --border: rgba(214, 184, 122, 0.12);
+  --border-strong: rgba(214, 184, 122, 0.30);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 8px 28px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.55), 0 16px 40px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.7);
 
-  /* accent */
-  --accent: #0046ff;
-  --accent-2: #0033cc;
-  --accent-soft: #e6ecff;
+  /* accent — bronze gold */
+  --accent: #c9a25a;
+  --accent-2: #9c7634;
+  --accent-soft: rgba(201, 162, 90, 0.16);
+  /* metallic gold gradient (engraved look) */
+  --gold-grad: linear-gradient(175deg, #f6e7b8 0%, #d7b16a 38%, #b78a3e 62%, #8a6326 100%);
+  --gold-grad-soft: linear-gradient(175deg, #e9d29a, #b88c43);
 
   /* legacy aliases (in case anything inherits SS conventions) */
   --accent-green: var(--accent);
   --accent-green-light: var(--accent-soft);
-  --accent-green-border: #c5d2ff;
+  --accent-green-border: rgba(201, 162, 90, 0.4);
   --accent-red: #c2453d;
   --accent-red-light: #fdecea;
   --accent-red-border: #f5c6c0;
@@ -49,8 +52,8 @@
   --status-over: #5a4ab0; --status-over-bg: #f0eefb; --status-over-border: #cfc8ea;
 
   /* logo */
-  --logo-bg: #0b0c0e;
-  --logo-fg: #0046ff;
+  --logo-bg: #1a1610;
+  --logo-fg: #d7b16a;
 
   /* type */
   --sans: 'Geist', system-ui, -apple-system, sans-serif;
@@ -97,11 +100,28 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--sans);
   color: var(--text);
-  background: var(--bg);
+  background-color: var(--bg);
+  /* layered smoke / haze over deep black */
+  background-image:
+    radial-gradient(60% 45% at 50% -5%, rgba(201, 162, 90, 0.12), transparent 70%),
+    radial-gradient(50% 40% at 12% 12%, rgba(190, 150, 90, 0.07), transparent 65%),
+    radial-gradient(55% 45% at 88% 28%, rgba(160, 130, 80, 0.06), transparent 60%),
+    radial-gradient(70% 50% at 50% 105%, rgba(120, 95, 55, 0.08), transparent 70%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-size: 15px;
   line-height: 1.5;
+}
+
+/* ── metallic gold text (engraved look) ── */
+.gold-text {
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
@@ -170,29 +190,24 @@ p { margin: 0; }
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
   font-family: var(--sans);
   font-weight: 800;
-  letter-spacing: -0.04em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   font-size: 19px;
   color: var(--text);
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.logo .mark {
-  width: 28px; height: 28px;
-  background: var(--logo-bg);
-  border-radius: 8px;
-  position: relative;
+.logo .logo-emblem {
+  width: 44px; height: 44px;
+  object-fit: contain;
   flex: none;
-}
-.logo .mark::before {
-  content: "";
-  position: absolute;
-  inset: 6px 6px auto auto;
-  width: 8px; height: 16px;
-  background: var(--logo-fg);
-  border-radius: 4px;
-  transform: rotate(20deg);
-  transform-origin: bottom center;
+  -webkit-text-fill-color: initial;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
 }
 
 /* ── buttons ── */
@@ -211,11 +226,17 @@ p { margin: 0; }
   white-space: nowrap;
   transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
-.btn:hover { opacity: 0.88; }
-.btn-primary { background: var(--ink); color: var(--bg); }
-.btn-accent  { background: var(--accent); color: #fff; }
+.btn:hover { opacity: 0.92; }
+.btn-primary,
+.btn-accent {
+  background: var(--gold-grad);
+  color: #1a1206;
+  box-shadow: inset 0 1px 0 rgba(255, 248, 224, 0.45), 0 6px 22px rgba(150, 110, 45, 0.28);
+}
+.btn-primary:hover,
+.btn-accent:hover { opacity: 1; filter: brightness(1.06); }
 .btn-ghost   { background: transparent; color: var(--text); border-color: var(--border-strong); }
-.btn-ghost:hover { background: var(--surface-2); opacity: 1; }
+.btn-ghost:hover { background: var(--surface-2); border-color: var(--accent); opacity: 1; }
 .btn-sm { height: 36px; padding: 0 14px; font-size: 12.5px; }
 .btn-lg { height: 56px; padding: 0 28px; font-size: 15px; }
 
@@ -1284,3 +1305,229 @@ section.block.dark .lede { color: rgba(244,243,239,0.7); }
 
 /* ── tweaks panel needs higher z than header ── */
 .tw-host { z-index: 200 !important; }
+
+/* ─────────────────────────────────────────────
+   GOLD-ON-BLACK THEME OVERRIDES
+   Fixes components that assumed a light page / blue accent.
+───────────────────────────────────────────── */
+
+/* gold metallic pills where the old design used a dark ink fill */
+.hero h1 .pill,
+.brand-chip.active,
+.service-tab.active,
+.extra-card .add {
+  background: var(--gold-grad);
+  color: #1a1206;
+  border-color: transparent;
+}
+.extra-card .add:hover { filter: brightness(1.08); background: var(--gold-grad); }
+
+/* hero accent word — engraved metallic */
+.hero h1 .accent-word {
+  background: var(--gold-grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  /* give the clipped gradient box room so round glyph bottoms aren't cut */
+  line-height: 1.08;
+  padding-bottom: 0.08em;
+}
+.hero-tag::before { background: linear-gradient(90deg, transparent, var(--accent)); }
+
+/* carousel active dot */
+.carousel-dots button.active { background: var(--gold-grad-soft); }
+
+/* services / promo dark tiles — subtle gold edge + warm glow */
+.svc-tile { border: 1px solid var(--border); }
+.svc-tile .ph-fill {
+  background-image:
+    radial-gradient(60% 70% at 80% 10%, rgba(201,162,90,0.20), transparent 70%),
+    radial-gradient(50% 70% at 0% 90%, rgba(247,231,184,0.06), transparent 60%);
+}
+.svc-tile .ph-art { color: rgba(201,162,90,0.10); }
+.svc-tile h3 {
+  background: var(--gold-grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+
+/* "flat" tiles: were light paper — now warm graphite with bone text */
+.svc-tile.flat { background: var(--surface-3); color: var(--text); }
+.svc-tile.flat .ph-mark { color: var(--text-2); }
+.svc-tile.flat .ph-num { color: var(--text-3); }
+.svc-tile.flat .svc-line p { color: var(--text-2); }
+.svc-tile.flat .svc-line .open { color: var(--text); }
+.svc-tile.flat .ph-art { color: rgba(201,162,90,0.10); }
+
+/* promo cards */
+.promo-card { border: 1px solid var(--border); }
+.promo-card.accent {
+  background: var(--gold-grad);
+  color: #1a1206;
+}
+.promo-card.accent .badge { background: rgba(26,18,6,0.16); color: #1a1206; }
+.promo-card.paper { background: var(--surface-3); color: var(--text); }
+.promo-card.paper .badge { background: rgba(201,162,90,0.14); color: var(--accent); }
+.promo-card.outline { color: var(--text); border-color: var(--border-strong); }
+.promo-card.outline .badge { background: rgba(201,162,90,0.12); color: var(--accent); }
+.promo-card h3 {
+  background: var(--gold-grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.promo-card.accent h3 { background: none; -webkit-text-fill-color: initial; color: #1a1206; }
+
+/* form fields focus — gold instead of invisible dark border */
+.field input:focus, .field textarea:focus, .field select:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.field input, .field textarea, .field select { background: var(--surface-2); }
+
+/* svc-cta heading — gold engraved */
+.svc-cta { border: 1px solid var(--border); }
+.svc-cta h3 {
+  background: var(--gold-grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+
+/* footer link hover + map → gold */
+.site-footer a:hover { color: var(--accent); }
+section.block.dark .eyebrow .accent { color: var(--accent); }
+.site-footer .map {
+  background:
+    linear-gradient(115deg, rgba(201,162,90,0.18), transparent 60%),
+    repeating-linear-gradient(45deg, rgba(247,231,184,0.04) 0 2px, transparent 2px 22px),
+    repeating-linear-gradient(-45deg, rgba(247,231,184,0.04) 0 2px, transparent 2px 22px),
+    #0c0a08;
+}
+.site-footer .map .pin .ring {
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(201,162,90,0.25), 0 0 0 14px rgba(201,162,90,0.10);
+}
+
+/* big section headings get a faint warm sheen */
+h2 { color: var(--text); }
+
+/* ─────────────────────────────────────────────
+   HERO — trust-building motion
+───────────────────────────────────────────── */
+.hero { padding-top: 72px; }
+.hero .shell-wide { position: relative; z-index: 2; }
+.hero .grid { align-items: center; }
+
+/* ambient gold haze + emblem watermark behind the copy */
+.hero-glow {
+  position: absolute;
+  top: -14%; right: 2%;
+  width: 60vw; max-width: 820px; aspect-ratio: 1;
+  background: radial-gradient(closest-side, rgba(201,162,90,0.20), rgba(201,162,90,0.06) 55%, transparent 72%);
+  filter: blur(14px);
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+  animation: heroGlow 9s ease-in-out infinite alternate;
+}
+@keyframes heroGlow {
+  from { opacity: 0.7; transform: translate3d(0,0,0) scale(1); }
+  to   { opacity: 1;   transform: translate3d(-12px,10px,0) scale(1.06); }
+}
+.hero-emblem {
+  position: absolute;
+  top: 50%; right: -2%;
+  width: clamp(320px, 38vw, 560px);
+  transform: translate(0, -50%);
+  opacity: 0.16;
+  z-index: 1;
+  pointer-events: none;
+  filter: saturate(1.1) drop-shadow(0 30px 80px rgba(0,0,0,0.6));
+  transition: transform 0.4s cubic-bezier(0.2,0.7,0.2,1), opacity 1.2s ease;
+  will-change: transform;
+}
+
+/* "what we do" rotating line */
+.hero-do {
+  margin-top: 24px;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  color: var(--text-2);
+}
+.hero-rotate {
+  display: inline-block;
+  font-weight: 700;
+  background: var(--gold-grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.2,0.7,0.2,1);
+}
+.hero-rotate.swap { opacity: 0; transform: translateY(-8px); }
+.hero-it { font-style: italic; font-weight: 300; letter-spacing: -0.02em; text-transform: none; }
+
+/* prevent gradient-clip from cutting round glyph bottoms anywhere */
+.hero-rotate, .svc-tile h3, .promo-card h3, .svc-cta h3 { padding-bottom: 0.06em; }
+
+.hero-cta { margin-top: 34px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+.hero-trust {
+  margin-top: 30px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 26px;
+}
+.hero-trust .trust {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  letter-spacing: -0.005em;
+  color: var(--text-2);
+}
+.hero-trust .trust svg { color: var(--accent); flex: none; }
+
+/* animated stat suffix */
+.hero .stat .num .suf { font-size: 18px; letter-spacing: 0; color: var(--text); }
+.hero .stat .num [data-count] { font-variant-numeric: tabular-nums; }
+
+/* shine sweep on the gold CTA — micro-interaction */
+.btn-accent { position: relative; overflow: hidden; }
+.btn-accent::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -130%;
+  width: 60%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,252,240,0.55), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.6s cubic-bezier(0.3,0.7,0.2,1);
+  pointer-events: none;
+}
+.btn-accent:hover::before { left: 130%; }
+
+/* ── staggered reveal-on-load / on-scroll ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.75s cubic-bezier(0.2,0.7,0.2,1), transform 0.75s cubic-bezier(0.2,0.7,0.2,1);
+  will-change: opacity, transform;
+}
+.reveal.in { opacity: 1; transform: none; }
+/* inline parts of the H1 need to be inline-block for transform to take effect */
+.hero h1 .reveal { display: inline-block; }
+
+@media (max-width: 1024px) {
+  .hero-emblem { opacity: 0.10; right: -10%; }
+}
+@media (max-width: 720px) {
+  .hero-emblem { display: none; }
+  .hero-trust { gap: 10px 18px; }
+}
+
+/* respect reduced-motion: show everything, kill movement */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .hero-glow { animation: none; }
+  .hero-emblem, .hero-rotate, .btn-accent::before { transition: none; }
+  .marquee-track { animation: none; }
+}

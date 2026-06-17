@@ -46,18 +46,23 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <section class="hero" id="hero" data-hero>
   <span class="hero-glow" aria-hidden="true"></span>
   <div class="shell-wide hero-inner">
-    <img class="hero-logo-mark reveal" data-reveal="0" data-parallax="9"
-         src={`${base}/assets/img/logo-mark.png`} alt="Гидразил — эмблема студии" />
-    <h1 class="hero-wordmark reveal" data-reveal="1">ГИДРАЗИЛ</h1>
-    <div class="hero-slogan reveal" data-reveal="2">Искусство превосходства</div>
+    <div class="hero-text">
+      <h1 class="hero-wordmark reveal" data-reveal="0">ГИДРАЗИЛ</h1>
+      <div class="hero-slogan reveal" data-reveal="1">Искусство превосходства</div>
 
-    <p class="hero-do reveal" data-reveal="3">
-      Делаем <span class="hero-rotate" data-rotate aria-live="polite">мойку</span>
-    </p>
+      <p class="hero-do reveal" data-reveal="2">
+        Делаем <span class="hero-rotate" data-rotate aria-live="polite">мойку</span>
+      </p>
 
-    <div class="hero-cta reveal" data-reveal="4">
-      <a class="btn btn-accent btn-lg arrow-after" href="#booking">Записаться</a>
-      <a class="btn btn-ghost btn-lg" href="#pricing">Рассчитать стоимость</a>
+      <div class="hero-cta reveal" data-reveal="3">
+        <a class="btn btn-accent btn-lg arrow-after" href="#booking">Записаться</a>
+        <a class="btn btn-ghost btn-lg" href="#pricing">Рассчитать стоимость</a>
+      </div>
+    </div>
+
+    <div class="hero-art reveal" data-reveal="1">
+      <img class="hero-logo-mark" data-parallax="10"
+           src={`${base}/assets/img/logo-mark.png`} alt="Гидразил — эмблема студии" />
     </div>
   </div>
 </section>

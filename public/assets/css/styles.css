@@ -1413,22 +1413,32 @@ h2 { color: var(--text); }
 /* ─────────────────────────────────────────────
    HERO — brand lockup + trust-building motion
 ───────────────────────────────────────────── */
-.hero { padding: 56px 0 96px; text-align: center; }
+.hero {
+  padding: 32px 0 80px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - var(--header-h));
+}
 .hero .hero-inner {
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
   align-items: center;
+  gap: 48px;
 }
+.hero-text { display: flex; flex-direction: column; align-items: flex-start; }
+.hero-art { display: flex; justify-content: flex-end; align-items: center; }
 
-/* ambient gold haze centered behind the logo */
+/* ambient gold haze behind the emblem (right side) */
 .hero-glow {
   position: absolute;
-  top: -8%; left: 50%;
-  width: 70vw; max-width: 760px; aspect-ratio: 1;
-  transform: translateX(-50%);
-  background: radial-gradient(closest-side, rgba(201,162,90,0.22), rgba(201,162,90,0.06) 55%, transparent 72%);
+  top: 50%; right: -4%;
+  width: 60vw; max-width: 720px; aspect-ratio: 1;
+  transform: translateY(-50%);
+  background: radial-gradient(closest-side, rgba(201,162,90,0.20), rgba(201,162,90,0.05) 55%, transparent 72%);
   filter: blur(16px);
   z-index: 0;
   pointer-events: none;
@@ -1436,13 +1446,13 @@ h2 { color: var(--text); }
   animation: heroGlow 9s ease-in-out infinite alternate;
 }
 @keyframes heroGlow {
-  from { opacity: 0.65; }
+  from { opacity: 0.6; }
   to   { opacity: 1; }
 }
 
 /* brand emblem */
 .hero-logo-mark {
-  width: clamp(170px, 27vw, 300px);
+  width: clamp(300px, 38vw, 540px);
   height: auto;
   filter: drop-shadow(0 24px 60px rgba(0,0,0,0.65));
   transition: transform 0.4s cubic-bezier(0.2,0.7,0.2,1);
@@ -1451,41 +1461,43 @@ h2 { color: var(--text); }
 
 /* wordmark */
 .hero-wordmark {
-  margin-top: 6px;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  line-height: 0.95;
-  font-size: clamp(52px, 10vw, 132px);
+  letter-spacing: 0.04em;
+  line-height: 0.92;
+  font-size: clamp(50px, 8.5vw, 124px);
   background: var(--gold-grad);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
   padding-bottom: 0.06em;
 }
-/* slogan with flanking rules, like the poster */
+/* slogan with flanking rule, like the poster */
 .hero-slogan {
-  margin-top: 14px;
+  margin-top: 12px;
   display: flex;
   align-items: center;
   gap: 16px;
   font-family: var(--mono);
   text-transform: uppercase;
-  letter-spacing: 0.34em;
-  font-size: clamp(11px, 1.5vw, 15px);
+  letter-spacing: 0.32em;
+  font-size: clamp(12px, 1.5vw, 16px);
   color: var(--accent);
 }
-.hero-slogan::before, .hero-slogan::after {
+.hero-slogan::after {
   content: "";
-  width: clamp(24px, 8vw, 90px);
+  flex: 1;
+  max-width: 120px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  background: linear-gradient(90deg, var(--accent), transparent);
 }
 
-/* "what we do" rotating line */
+/* "what we do" — large enumeration line */
 .hero-do {
-  margin-top: 34px;
-  font-size: 17px;
-  letter-spacing: -0.01em;
+  margin-top: 36px;
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
   color: var(--text-2);
 }
 .hero-rotate {
@@ -1502,7 +1514,15 @@ h2 { color: var(--text); }
 /* prevent gradient-clip from cutting round glyph bottoms anywhere */
 .hero-rotate, .svc-tile h3, .promo-card h3, .svc-cta h3 { padding-bottom: 0.06em; }
 
-.hero-cta { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.hero-cta { margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-start; }
+
+/* hero responsive: emblem to the side on desktop, hidden on small screens */
+@media (max-width: 900px) {
+  .hero { min-height: auto; padding: 40px 0 64px; }
+  .hero .hero-inner { grid-template-columns: 1fr; gap: 0; }
+  .hero-art { display: none; }
+  .hero-glow { right: -20%; opacity: 0.5; }
+}
 
 /* О нас */
 .about-block .about-text {

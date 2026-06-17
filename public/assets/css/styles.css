@@ -96,7 +96,8 @@ body.theme-dark {
 /* ── reset ── */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { max-width: 100%; overflow-x: hidden; }
 body {
   font-family: var(--sans);
   color: var(--text);
@@ -1522,10 +1523,15 @@ h2 { color: var(--text); }
 
 /* hero responsive: emblem to the side on desktop, hidden on small screens */
 @media (max-width: 900px) {
-  .hero { min-height: auto; padding: 40px 0 64px; }
+  .hero { min-height: auto; padding: 40px 0 56px; text-align: center; }
   .hero .hero-inner { grid-template-columns: 1fr; gap: 0; }
   .hero-art { display: none; }
-  .hero-glow { right: -20%; opacity: 0.5; }
+  .hero-glow { right: 50%; transform: translate(50%, -50%); opacity: 0.5; }
+  /* center the copy so it fills the narrow screen evenly */
+  .hero-text { align-items: center; }
+  .hero-slogan { justify-content: center; }
+  .hero-slogan::after { display: none; }
+  .hero-cta { justify-content: center; }
 }
 
 /* О нас */

@@ -1495,13 +1495,14 @@ h2 { color: var(--text); }
 
 /* "what we do" — large enumeration line; reserve 2 lines so it never jumps */
 .hero-do {
-  margin-top: 36px;
+  margin-top: 42px;
+  margin-bottom: 8px;
   font-size: clamp(28px, 4vw, 52px);
   font-weight: 500;
-  line-height: 1.12;
+  line-height: 1.14;
   letter-spacing: -0.02em;
   color: var(--text-2);
-  min-height: 2.24em;
+  min-height: 2.7em;
 }
 .hero-rotate {
   display: inline-block;
@@ -1517,7 +1518,7 @@ h2 { color: var(--text); }
 /* prevent gradient-clip from cutting round glyph bottoms anywhere */
 .hero-rotate, .svc-tile h3, .promo-card h3, .svc-cta h3 { padding-bottom: 0.06em; }
 
-.hero-cta { margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-start; }
+.hero-cta { margin-top: 40px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-start; }
 
 /* hero responsive: emblem to the side on desktop, hidden on small screens */
 @media (max-width: 900px) {

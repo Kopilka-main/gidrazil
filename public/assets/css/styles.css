@@ -1294,9 +1294,6 @@ section.block.dark .lede { color: rgba(244,243,239,0.7); }
   :root { --gutter: 18px; --header-h: 64px; }
   .site-header nav.main-nav { display: none; }
   .site-header .header-actions { gap: 10px; min-width: 0; }
-  /* hero "Делаем …" — always two lines: «Делаем» / «‹услуга›» */
-  .hero-do { min-height: 0; margin-bottom: 0; }
-  .hero-rotate { display: block; }
   .promo-card { flex: 0 0 calc(100% - 0px); height: 380px; }
   .promo-card h3 { font-size: 30px; }
   .extras-grid { grid-template-columns: 1fr; }
@@ -1515,10 +1512,11 @@ h2 { color: var(--text); }
   line-height: 1.14;
   letter-spacing: -0.02em;
   color: var(--text-2);
-  min-height: 2.7em;
+  /* "Делаем" + word are always on two lines now → constant height, no jump */
+  min-height: 0;
 }
 .hero-rotate {
-  display: inline-block;
+  display: block;
   font-weight: 700;
   background: var(--gold-grad);
   -webkit-background-clip: text; background-clip: text;

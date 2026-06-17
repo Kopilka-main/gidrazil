@@ -43,76 +43,43 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 </header>
 
 <!-- ─────────────────────────  HERO  ───────────────────────── -->
-<section class="hero" id="about" data-hero>
+<section class="hero" id="hero" data-hero>
   <span class="hero-glow" aria-hidden="true"></span>
-  <img class="hero-emblem" src={`${base}/assets/img/logo-mark.png`} alt="" aria-hidden="true" data-parallax="14" />
-  <div class="shell-wide grid">
-    <div class="hero-main">
-      <div class="hero-tag reveal" data-reveal="0">Искусство превосходства · Детейлинг · с 2017</div>
-      <h1>
-        <span class="pill reveal" data-reveal="1">Покрытие</span><br />
-        <span class="accent-word reveal" data-reveal="2">безупречно</span><span class="reveal" data-reveal="2">,</span><br />
-        <span class="reveal" data-reveal="3">работа — <span class="hero-it">точно по часам</span></span>
-      </h1>
+  <div class="shell-wide hero-inner">
+    <img class="hero-logo-mark reveal" data-reveal="0" data-parallax="9"
+         src={`${base}/assets/img/logo-mark.png`} alt="Гидразил — эмблема студии" />
+    <h1 class="hero-wordmark reveal" data-reveal="1">ГИДРАЗИЛ</h1>
+    <div class="hero-slogan reveal" data-reveal="2">Искусство превосходства</div>
 
-      <p class="hero-do reveal" data-reveal="4">
-        Делаем <span class="hero-rotate" data-rotate aria-live="polite">тонировку</span>
-      </p>
+    <p class="hero-do reveal" data-reveal="3">
+      Делаем <span class="hero-rotate" data-rotate aria-live="polite">мойку</span>
+    </p>
 
-      <div class="hero-cta reveal" data-reveal="5">
-        <a class="btn btn-accent btn-lg arrow-after" href="#booking">Записаться</a>
-        <a class="btn btn-ghost btn-lg" href="#pricing">Рассчитать стоимость</a>
-      </div>
-
-      <div class="hero-trust reveal" data-reveal="6">
-        <span class="trust">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L20 6 V11 C20 16 16.5 19.5 12 21 C7.5 19.5 4 16 4 11 V6 Z"/><path d="M9 12 l2 2 l4-4"/></svg>
-          Сертифицированные материалы
-        </span>
-        <span class="trust">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3 H15 L19 7 V21 H6 Z"/><path d="M9 11 h7 M9 15 h7"/></svg>
-          Гарантия в договоре
-        </span>
-        <span class="trust">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8 a2 2 0 0 1 2-2 h2 l1.5-2 h5 L20 6 a2 2 0 0 1 2 2 v9 a2 2 0 0 1-2 2 H5 a2 2 0 0 1-2-2 Z"/><circle cx="12.5" cy="12.5" r="3.5"/></svg>
-          Фотоотчёт по этапам
-        </span>
-      </div>
-    </div>
-
-    <div class="meta">
-      <p class="lede reveal" data-reveal="5">
-        Защитные плёнки, керамика, реставрация — для владельцев, для которых
-        машина не транспорт, а часть распорядка. Один бокс — одна работа.
-      </p>
-      <div class="stats">
-        <div class="stat reveal" data-reveal="6">
-          <div class="num"><span data-count="2140" data-sep>0</span></div>
-          <div class="lbl">авто прошло через бокс</div>
-        </div>
-        <div class="stat reveal" data-reveal="7">
-          <div class="num"><span data-count="94">0</span><span class="suf">%</span></div>
-          <div class="lbl">клиентов возвращаются</div>
-        </div>
-        <div class="stat reveal" data-reveal="8">
-          <div class="num"><span data-count="5">0</span><span class="suf"> лет</span></div>
-          <div class="lbl">гарантия на полиуретан</div>
-        </div>
-        <div class="stat reveal" data-reveal="9">
-          <div class="num">24/7</div>
-          <div class="lbl">консъерж-приёмка</div>
-        </div>
-      </div>
+    <div class="hero-cta reveal" data-reveal="4">
+      <a class="btn btn-accent btn-lg arrow-after" href="#booking">Записаться</a>
+      <a class="btn btn-ghost btn-lg" href="#pricing">Рассчитать стоимость</a>
     </div>
   </div>
 </section>
 
-<!-- ─────────────────────────  MARQUEE  ───────────────────────── -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>3M Crystalline</span><span>SunTek PPF</span><span>STEK Dynoshield</span><span>Gtechniq Crystal Serum</span><span>Soft99 Fusso Coat</span><span>Koch-Chemie</span><span>Meguiar's Mirror Glaze</span><span>Sonax CC36</span><span>3M Crystalline</span><span>SunTek PPF</span><span>STEK Dynoshield</span><span>Gtechniq Crystal Serum</span><span>Soft99 Fusso Coat</span><span>Koch-Chemie</span><span>Meguiar's Mirror Glaze</span><span>Sonax CC36</span>
+<!-- ─────────────────────────  О НАС  ───────────────────────── -->
+<section class="block about-block" id="about">
+  <div class="shell-wide">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow">О студии <span class="dot">·</span> <span class="accent">Гидразил</span></div>
+        <h2>О нас</h2>
+      </div>
+    </div>
+    <p class="about-text reveal" data-reveal="0">
+      Гидразил — студия детейлинга, где автомобиль получает профессиональный уход,
+      внимание к каждой детали и бережное отношение на каждом этапе работы.
+      Мы только открываемся, и уже строим работу на качестве, честном подходе
+      и современном понимании детейлинга как комплекса услуг по уходу, восстановлению
+      и защите автомобиля.
+    </p>
   </div>
-</div>
+</section>
 
 <!-- ─────────────────────────  PROMO CAROUSEL  ───────────────────────── -->
 <section class="block" id="promo">
@@ -149,7 +116,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <div class="shell-wide">
     <div class="section-head">
       <div class="left">
-        <div class="eyebrow">Услуги <span class="dot">·</span> <span class="accent">9 направлений</span></div>
+        <div class="eyebrow">Услуги <span class="dot">·</span> <span class="accent">11 направлений</span></div>
         <h2>Что мы умеем</h2>
         <p class="lede">Каждое направление — отдельный мастер и отдельный сертификат материала. Наведите на плитку, чтобы прочитать что внутри.</p>
       </div>
@@ -216,8 +183,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </div>
 
     <p class="body-sm" style="margin-top:18px;max-width:680px">
-      * Цена ориентировочная — окончательно фиксируется после осмотра. На размер
-      <span class="mono">XL</span> относятся внедорожники, минивэны и автомобили длиной более 5 метров.
+      На размер <span class="mono">XL</span> относятся внедорожники, минивэны и автомобили длиной более 5 метров.
     </p>
   </div>
 </section>
@@ -236,25 +202,25 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </div>
 
     <div class="services-grid">
-      <a class="svc-tile size-8" href={`${base}/service?s=polnaya-okl`} style="min-height:380px">
+      <a class="svc-tile size-8" href={`${base}/service?s=okleyka`} style="min-height:380px">
         <span class="ph-fill"></span>
-        <span class="ph-mark">001 · Полная оклейка</span>
-        <span class="ph-num">[case-2024-11]</span>
-        <span class="ph-art" data-svc-art="polnaya-okl"></span>
+        <span class="ph-mark">001 · Оклейка кузова</span>
+        <span class="ph-num">[PPF]</span>
+        <span class="ph-art" data-svc-art="okleyka"></span>
         <h3>Porsche 911 GT3 / PPF Stek</h3>
         <div class="svc-line">
           <p>5 дней работы. Защитная плёнка по всему кузову с обхватом кромок дверей.</p>
           <span class="open">Открыть кейс <span style="font-family:var(--mono)">→</span></span>
         </div>
       </a>
-      <a class="svc-tile size-4 flat" href={`${base}/service?s=salon`} style="min-height:380px">
+      <a class="svc-tile size-4 flat" href={`${base}/service?s=zashita-salona`} style="min-height:380px">
         <span class="ph-fill"></span>
-        <span class="ph-mark">002 · Реставрация салона</span>
-        <span class="ph-num">[case-2025-03]</span>
-        <span class="ph-art" data-svc-art="salon"></span>
+        <span class="ph-mark">002 · Защита салона</span>
+        <span class="ph-num">[кожа]</span>
+        <span class="ph-art" data-svc-art="zashita-salona"></span>
         <h3>BMW M5 — кожа Merino</h3>
         <div class="svc-line">
-          <p>Перетяжка боковин и руля.</p>
+          <p>Химчистка и защита кожи Merino.</p>
           <span class="open">Открыть <span style="font-family:var(--mono)">→</span></span>
         </div>
       </a>
@@ -366,15 +332,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             <label for="service">Услуга</label>
             <select id="service" name="service">
               <option value="">— выберите —</option>
+              <option value="moyka">Мойка автомобиля</option>
+              <option value="himchistka">Химчистка салона</option>
+              <option value="zashita-salona">Защита салона автомобиля</option>
+              <option value="polirovka">Полировка кузова</option>
+              <option value="keramika">Нанесение керамики на кузов</option>
+              <option value="okleyka">Оклейка автомобиля</option>
+              <option value="bronirovanie-stekla">Бронирование лобового стекла</option>
               <option value="tonirovka">Тонировка</option>
-              <option value="okleyka-zon">Оклейка зон риска</option>
-              <option value="polnaya-okl">Полная оклейка</option>
-              <option value="polirovka">Полировка</option>
-              <option value="himchistka">Химчистка</option>
-              <option value="deteyling">Детейлинг</option>
-              <option value="salon">Реставрация салона</option>
-              <option value="moyka">Мойка</option>
-              <option value="dop">Доп. работы</option>
+              <option value="shumoizolyatsiya">Шумоизоляция автомобиля</option>
+              <option value="antihrom">Антихром</option>
+              <option value="dooosnaschenie">Дооснащение автомобиля</option>
             </select>
           </div>
           <div class="field">

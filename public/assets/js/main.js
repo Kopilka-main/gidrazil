@@ -79,6 +79,17 @@
     });
   }
   function artSVG(slug) {
+    // new service slugs reuse existing line-art
+    const alias = {
+      "zashita-salona": "salon",
+      "keramika": "polnaya-okl",
+      "okleyka": "okleyka-zon",
+      "bronirovanie-stekla": "tonirovka",
+      "shumoizolyatsiya": "dop",
+      "antihrom": "dop",
+      "dooosnaschenie": "dop",
+    };
+    slug = alias[slug] || slug;
     const map = {
       "tonirovka":   `<svg viewBox="0 0 200 140" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="20" y="35" width="160" height="70" rx="8"/><rect x="35" y="50" width="55" height="40" rx="4"/><rect x="110" y="50" width="55" height="40" rx="4" fill="currentColor" opacity="0.5"/></svg>`,
       "okleyka-zon": `<svg viewBox="0 0 200 140" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M30 90 Q60 40 100 40 Q140 40 170 90"/><circle cx="60" cy="90" r="10"/><circle cx="140" cy="90" r="10"/><path d="M40 65 L160 65" stroke-dasharray="3 5"/></svg>`,
@@ -278,9 +289,9 @@
   function buildServicesGrid() {
     const grid = document.querySelector('[data-services-grid]');
     if (!grid) return;
-    // 9 services, varied tile sizes
-    const sizes = ["size-6","size-6","size-4","size-4","size-4","size-6","size-6","size-4","size-8"];
-    const flats = [false,false,true,false,false,false,true,false,false];
+    // varied tile sizes (mosaic across a 12-col grid)
+    const sizes = ["size-6","size-6","size-4","size-4","size-4","size-4","size-4","size-4","size-6","size-6","size-12"];
+    const flats = [false,false,true,false,false,true,false,false,false,true,false];
     grid.innerHTML = D.services.map((s, i) => `
       <a class="svc-tile ${sizes[i]||'size-4'} ${flats[i]?'flat':''}" href="${BASE}/service?s=${s.slug}">
         <span class="ph-fill"></span>
@@ -423,7 +434,7 @@
   function initRotator() {
     const el = document.querySelector('[data-rotate]');
     if (!el) return;
-    const words = ['тонировку', 'керамику', 'оклейку PPF', 'полировку', 'химчистку', 'реставрацию салона', 'защиту кузова'];
+    const words = ['мойку', 'химчистку салона', 'полировку кузова', 'керамику', 'оклейку кузова', 'бронирование стекла', 'тонировку', 'шумоизоляцию', 'антихром', 'дооснащение'];
     el.textContent = words[0];
     if (reducedMotion()) return;
     let i = 0;
@@ -449,7 +460,7 @@
       raf = null;
       layers.forEach(l => {
         const amt = parseFloat(l.dataset.parallax) || 10;
-        l.style.transform = `translate(${(tx * amt).toFixed(1)}px, calc(-50% + ${(ty * amt).toFixed(1)}px))`;
+        l.style.transform = `translate(${(tx * amt).toFixed(1)}px, ${(ty * amt).toFixed(1)}px)`;
       });
     };
     hero.addEventListener('mousemove', (e) => {

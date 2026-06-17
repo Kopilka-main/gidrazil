@@ -1294,6 +1294,9 @@ section.block.dark .lede { color: rgba(244,243,239,0.7); }
   :root { --gutter: 18px; --header-h: 64px; }
   .site-header nav.main-nav { display: none; }
   .site-header .header-actions { gap: 10px; min-width: 0; }
+  /* hero "Делаем …" — always two lines: «Делаем» / «‹услуга›» */
+  .hero-do { min-height: 0; margin-bottom: 0; }
+  .hero-rotate { display: block; }
   .promo-card { flex: 0 0 calc(100% - 0px); height: 380px; }
   .promo-card h3 { font-size: 30px; }
   .extras-grid { grid-template-columns: 1fr; }

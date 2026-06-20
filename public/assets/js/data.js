@@ -216,5 +216,17 @@ window.GIDRAZIL = (function () {
     { id:"09", title:"Набор для ухода",          desc:"Шампунь, воск, микрофибра ×3, аппликатор.",     price:"4 900 ₽", iconPath:"M10 10 H14 V20 H10 Z M18 8 H22 V22 H18 Z M26 12 H30 V18 H26 Z" },
   ];
 
-  return { services, promos, carBrands, carModels, sizeClass, priceMatrix, extras };
+  // real work photos per service (public/assets/img/works/)
+  const gallery = {
+    "moyka":               [{ f:"moyka-do.jpg", b:"до" }, { f:"moyka-posle.jpg", b:"после" }, { f:"moyka-1.jpg" }],
+    "himchistka":          [{ f:"himchistka-1.jpg" }, { f:"himchistka-2.jpg" }, { f:"himchistka-3.jpg" }],
+    "zashita-salona":      [{ f:"zashita-salona-1.jpg" }, { f:"zashita-salona-2.jpg" }, { f:"zashita-salona-3.jpg" }],
+    "polirovka":           [{ f:"polirovka-1.jpg" }, { f:"polirovka-2.jpg" }, { f:"polirovka-3.jpg" }],
+    "keramika":            [{ f:"keramika-1.jpg" }],
+    "okleyka":             [{ f:"okleyka-1.jpg" }, { f:"okleyka-2.jpg" }],
+    "bronirovanie-stekla": [{ f:"bronirovanie-stekla-1.jpg" }, { f:"bronirovanie-stekla-2.jpg" }, { f:"bronirovanie-stekla-3.jpg" }],
+    "tonirovka":           [{ f:"tonirovka-do.jpg", b:"до" }, { f:"tonirovka-posle.jpg", b:"после" }],
+  };
+
+  return { services, promos, carBrands, carModels, sizeClass, priceMatrix, extras, gallery };
 })();

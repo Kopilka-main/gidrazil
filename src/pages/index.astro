@@ -195,7 +195,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <div class="shell-wide">
     <div class="section-head">
       <div class="left">
-        <div class="eyebrow">Наши работы <span class="dot">·</span> <span class="accent">Кейсы 2024–2026</span></div>
+        <div class="eyebrow">Наши работы <span class="dot">·</span> <span class="accent">реальные фото</span></div>
         <h2>До <span style="font-family:var(--mono);font-size:0.7em;letter-spacing:-0.02em;color:var(--text-2);font-weight:400">→</span> после</h2>
       </div>
       <div class="right">
@@ -203,63 +203,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       </div>
     </div>
 
-    <div class="services-grid">
-      <a class="svc-tile size-8" href={`${base}/service?s=okleyka`} style="min-height:380px">
-        <span class="ph-fill"></span>
-        <span class="ph-mark">001 · Оклейка кузова</span>
-        <span class="ph-num">[PPF]</span>
-        <span class="ph-art" data-svc-art="okleyka"></span>
-        <h3>Porsche 911 GT3 / PPF Stek</h3>
-        <div class="svc-line">
-          <p>5 дней работы. Защитная плёнка по всему кузову с обхватом кромок дверей.</p>
-          <span class="open">Открыть кейс <span style="font-family:var(--mono)">→</span></span>
-        </div>
-      </a>
-      <a class="svc-tile size-4 flat" href={`${base}/service?s=zashita-salona`} style="min-height:380px">
-        <span class="ph-fill"></span>
-        <span class="ph-mark">002 · Защита салона</span>
-        <span class="ph-num">[кожа]</span>
-        <span class="ph-art" data-svc-art="zashita-salona"></span>
-        <h3>BMW M5 — кожа Merino</h3>
-        <div class="svc-line">
-          <p>Химчистка и защита кожи Merino.</p>
-          <span class="open">Открыть <span style="font-family:var(--mono)">→</span></span>
-        </div>
-      </a>
-      <a class="svc-tile size-4" href={`${base}/service?s=tonirovka`}>
-        <span class="ph-fill"></span>
-        <span class="ph-mark">003 · Тонировка</span>
-        <span class="ph-num">[case-2025-07]</span>
-        <span class="ph-art" data-svc-art="tonirovka"></span>
-        <h3>Lexus LX 600 — атермал</h3>
-        <div class="svc-line">
-          <p>Лобовое 3M Crystalline + борта.</p>
-          <span class="open">Открыть <span style="font-family:var(--mono)">→</span></span>
-        </div>
-      </a>
-      <a class="svc-tile size-4 flat" href={`${base}/service?s=polirovka`}>
-        <span class="ph-fill"></span>
-        <span class="ph-mark">004 · Полировка</span>
-        <span class="ph-num">[case-2025-09]</span>
-        <span class="ph-art" data-svc-art="polirovka"></span>
-        <h3>Mercedes S-Class W223</h3>
-        <div class="svc-line">
-          <p>3 этапа + керамическая защита.</p>
-          <span class="open">Открыть <span style="font-family:var(--mono)">→</span></span>
-        </div>
-      </a>
-      <a class="svc-tile size-4" href={`${base}/service?s=himchistka`}>
-        <span class="ph-fill"></span>
-        <span class="ph-mark">005 · Химчистка</span>
-        <span class="ph-num">[case-2026-01]</span>
-        <span class="ph-art" data-svc-art="himchistka"></span>
-        <h3>Range Rover Sport — кожа</h3>
-        <div class="svc-line">
-          <p>Полная, с озонированием.</p>
-          <span class="open">Открыть <span style="font-family:var(--mono)">→</span></span>
-        </div>
-      </a>
-    </div>
+    <div class="works-grid" data-works></div>
   </div>
 </section>
 

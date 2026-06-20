@@ -292,9 +292,13 @@
     // varied tile sizes (mosaic across a 12-col grid)
     const sizes = ["size-6","size-6","size-4","size-4","size-4","size-4","size-4","size-4","size-6","size-6","size-12"];
     const flats = [false,false,true,false,false,true,false,false,false,true,false];
-    grid.innerHTML = D.services.map((s, i) => `
-      <a class="svc-tile ${sizes[i]||'size-4'} ${flats[i]?'flat':''}" href="${BASE}/service?s=${s.slug}">
+    grid.innerHTML = D.services.map((s, i) => {
+      const ph = ((D.gallery && D.gallery[s.slug]) || [])[0];
+      const photo = ph ? `<img class="ph-photo" loading="lazy" src="${BASE}/assets/img/works/${ph.f}" alt="${s.title}">` : '';
+      return `
+      <a class="svc-tile ${sizes[i]||'size-4'} ${flats[i]?'flat':''} ${ph?'has-photo':''}" href="${BASE}/service?s=${s.slug}">
         <span class="ph-fill"></span>
+        ${photo}
         <span class="ph-mark">${s.num} · ${s.title}</span>
         <span class="ph-num">[gdz-${s.num}]</span>
         <span class="ph-art" data-svc-art="${s.slug}"></span>
@@ -303,9 +307,31 @@
           <p>${s.short}</p>
           <span class="open">Открыть <span style="font-family:var(--mono)">→</span></span>
         </div>
+      </a>`;
+    }).join('');
+    initServiceTiles();
+  }
+
+  // ───────────────────────────────
+  // WORKS GALLERY (real photos)
+  // ───────────────────────────────
+  function buildWorks() {
+    const box = document.querySelector('[data-works]');
+    if (!box || !D.gallery) return;
+    const titleBySlug = {};
+    D.services.forEach(s => { titleBySlug[s.slug] = s.title; });
+    const order = ["moyka", "tonirovka", "polirovka", "keramika", "okleyka", "bronirovanie-stekla", "himchistka", "zashita-salona"];
+    const tiles = [];
+    order.forEach(slug => {
+      (D.gallery[slug] || []).forEach(p => tiles.push({ slug, title: titleBySlug[slug] || slug, f: p.f, b: p.b }));
+    });
+    box.innerHTML = tiles.map(t => `
+      <a class="work-card" href="${BASE}/service?s=${t.slug}">
+        <img loading="lazy" src="${BASE}/assets/img/works/${t.f}" alt="${t.title}">
+        ${t.b ? `<span class="work-badge">${t.b}</span>` : ''}
+        <span class="work-label">${t.title}</span>
       </a>
     `).join('');
-    initServiceTiles();
   }
 
   // ───────────────────────────────
@@ -360,10 +386,29 @@
       teaserBox.innerHTML = `<p class="lede" style="color:var(--text-3)">Прайс рассчитываем индивидуально по фотографиям и осмотру — оставьте заявку, ответим в течение 15 минут.</p>`;
     }
 
-    // service art into hero photos
-    root.querySelectorAll('[data-svc-art]').forEach(el => {
-      el.innerHTML = artSVG(slug);
-    });
+    // gallery: real photos if available, otherwise line-art placeholders
+    const photos = (D.gallery && D.gallery[slug]) || [];
+    const photoEls = root.querySelectorAll('.svc-photo');
+    if (photos.length && photoEls.length) {
+      photoEls.forEach((el, i) => {
+        const p = photos[i % photos.length];
+        el.classList.add('has-photo');
+        const img = document.createElement('img');
+        img.className = 'svc-photo-img';
+        img.loading = 'lazy';
+        img.src = `${BASE}/assets/img/works/${p.f}`;
+        img.alt = svc.title;
+        el.insertBefore(img, el.firstChild);
+        if (p.b) {
+          const badge = document.createElement('span');
+          badge.className = 'work-badge';
+          badge.textContent = p.b;
+          el.appendChild(badge);
+        }
+      });
+    } else {
+      root.querySelectorAll('[data-svc-art]').forEach(el => { el.innerHTML = artSVG(slug); });
+    }
 
     // pre-select service in booking form if present
     const svcInput = root.querySelector('select[name="service"]');
@@ -484,6 +529,7 @@
   // ───────────────────────────────
   document.addEventListener('DOMContentLoaded', () => {
     buildServicesGrid();
+    buildWorks();
     initCarousel();
     initPricing();
     initExtras();

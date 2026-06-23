@@ -29,3 +29,7 @@ Thumbs.db
 Изображение Гидрозил/
 ChatGPT Image*.png
 images_gidra/
+
+# крупные локальные файлы
+android-studio-*.exe
+*.exe

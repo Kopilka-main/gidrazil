@@ -320,7 +320,7 @@
     if (!box || !D.gallery) return;
     const titleBySlug = {};
     D.services.forEach(s => { titleBySlug[s.slug] = s.title; });
-    const order = ["moyka", "tonirovka", "polirovka", "keramika", "okleyka", "bronirovanie-stekla", "himchistka", "zashita-salona"];
+    const order = ["moyka", "tonirovka", "polirovka", "keramika", "okleyka", "bronirovanie-stekla", "antihrom", "himchistka", "zashita-salona"];
     const tiles = [];
     order.forEach(slug => {
       (D.gallery[slug] || []).forEach(p => tiles.push({ slug, title: titleBySlug[slug] || slug, f: p.f, b: p.b }));

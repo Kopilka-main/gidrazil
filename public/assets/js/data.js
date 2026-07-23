@@ -13,7 +13,7 @@ window.GIDRAZIL = (function () {
     { slug: "bronirovanie-stekla", num: "07", title: "Бронирование лобового стекла",  short: "Прозрачная плёнка от сколов и трещин." },
     { slug: "tonirovka",           num: "08", title: "Тонировка",                     short: "Атермальная и керамическая. Сертифицированные плёнки." },
     { slug: "shumoizolyatsiya",    num: "09", title: "Шумоизоляция автомобиля",       short: "Двери, пол, арки, потолок. Тише и теплее." },
-    { slug: "antihrom",            num: "10", title: "Антихром",                      short: "Чёрный глянец или мат на хромированные элементы." },
+    { slug: "antihrom",            num: "10", title: "Антихром",                      short: "Хромированные детали перекрашиваем в цвет кузова." },
     { slug: "dooosnaschenie",      num: "11", title: "Дооснащение автомобиля",        short: "Доводчики дверей, подогрев руля, подогрев и вентиляция сидений." },
   ];
 
@@ -187,8 +187,8 @@ window.GIDRAZIL = (function () {
     "antihrom": {
       label: "Антихром",
       items: [
-        { id:"ah1", title:"Оконные молдинги",        sub:"Чёрный глянец или мат",                 price:{S:8000,M:9500,L:11000,XL:13000},   dur:"4 часа" },
-        { id:"ah2", title:"Решётка радиатора",       sub:"Затемнение хрома решётки",              price:{S:4500,M:5000,L:5500,XL:6500},     dur:"2 часа" },
+        { id:"ah1", title:"Оконные молдинги",        sub:"В цвет кузова или чёрный",              price:{S:8000,M:9500,L:11000,XL:13000},   dur:"4 часа" },
+        { id:"ah2", title:"Решётка радиатора",       sub:"Перекрас хрома в цвет кузова",          price:{S:4500,M:5000,L:5500,XL:6500},     dur:"2 часа" },
         { id:"ah3", title:"Комплект «весь хром»",    sub:"Молдинги, решётка, эмблемы, патрубки",  price:{S:18000,M:22000,L:26000,XL:32000}, dur:"1 день" },
       ],
     },
@@ -226,6 +226,7 @@ window.GIDRAZIL = (function () {
     "okleyka":             [{ f:"okleyka-1.jpg" }, { f:"okleyka-2.jpg" }],
     "bronirovanie-stekla": [{ f:"bronirovanie-stekla-1.jpg" }, { f:"bronirovanie-stekla-2.jpg" }, { f:"bronirovanie-stekla-3.jpg" }],
     "tonirovka":           [{ f:"tonirovka-do.jpg", b:"до" }, { f:"tonirovka-posle.jpg", b:"после" }],
+    "antihrom":            [{ f:"antihrom-posle-1.jpg", b:"после" }, { f:"antihrom-do-1.jpg", b:"до" }, { f:"antihrom-posle-2.jpg", b:"после" }, { f:"antihrom-do-2.jpg", b:"до" }],
   };
 
   return { services, promos, carBrands, carModels, sizeClass, priceMatrix, extras, gallery };

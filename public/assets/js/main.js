@@ -143,7 +143,7 @@
     function renderModels() {
       const models = D.carModels[state.brand] || [];
       modelBox.innerHTML = models.map(m => `
-        <button class="model-chip ${m===state.model?'active':''}" data-model="${m}">${m} <span class="mono" style="font-size:11px;color:inherit;opacity:0.55;margin-left:8px">${D.sizeClass[m]||'M'}</span></button>
+        <button class="model-chip ${m===state.model?'active':''}" data-model="${m}">${m} <span class="mono" style="font-size:11px;color:inherit;opacity:0.55;margin-left:8px">К${D.sizeClass[m]||3}</span></button>
       `).join('');
       currentBrandEl.textContent = state.brand;
       currentModelEl.textContent = state.model;
@@ -171,7 +171,7 @@
     });
 
     function renderTable() {
-      const size = D.sizeClass[state.model] || "M";
+      const size = D.sizeClass[state.model] || 3;
       const svc = D.priceMatrix[state.svcKey];
       currentSvcEl.textContent = svc.label;
 
@@ -181,8 +181,7 @@
             <tr>
               <th style="width:46px"></th>
               <th>Услуга</th>
-              <th style="text-align:right">Время</th>
-              <th style="text-align:right">Цена ${size}</th>
+              <th style="text-align:right">Цена · К${size}</th>
             </tr>
           </thead>
           <tbody>
@@ -191,10 +190,9 @@
                 <td><input type="checkbox" data-item="${it.id}" ${state.selected.has(it.id)?'checked':''} style="width:18px;height:18px;accent-color:var(--accent)"></td>
                 <td>
                   <div class="item-title">${it.title}</div>
-                  <div class="item-meta">${it.sub}</div>
+                  ${it.sub ? `<div class="item-meta">${it.sub}</div>` : ''}
                 </td>
-                <td class="dur">${it.dur}</td>
-                <td class="amount">${formatN(it.price[size])} ₽</td>
+                <td class="amount">${it.from?'от ':''}${formatN(it.price[size])} ₽</td>
               </tr>
             `).join('')}
           </tbody>
@@ -210,10 +208,12 @@
       updateTotal();
     }
     function updateTotal() {
-      const size = D.sizeClass[state.model] || "M";
+      const size = D.sizeClass[state.model] || 3;
       const svc = D.priceMatrix[state.svcKey];
-      const sum = svc.items.filter(it => state.selected.has(it.id)).reduce((a, b) => a + b.price[size], 0);
-      totalEl.textContent = formatN(sum) + " ₽";
+      const chosen = svc.items.filter(it => state.selected.has(it.id));
+      const sum = chosen.reduce((a, b) => a + b.price[size], 0);
+      const anyFrom = chosen.some(it => it.from);
+      totalEl.textContent = (anyFrom ? 'от ' : '') + formatN(sum) + ' ₽';
     }
 
     renderModels();
@@ -400,9 +400,9 @@
               <span class="n">${String(i+1).padStart(2,'0')}</span>
               <div class="t">
                 <div class="title">${it.title}</div>
-                <div class="sub">${it.sub}</div>
+                ${it.sub ? `<div class="sub">${it.sub}</div>` : ''}
               </div>
-              <span class="v">от ${formatN(it.price.S)} ₽</span>
+              <span class="v">от ${formatN(it.price[1])} ₽</span>
             </div>
           `).join('')}
         </div>

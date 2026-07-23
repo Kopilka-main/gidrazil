@@ -187,9 +187,9 @@ window.GIDRAZIL = (function () {
     "antihrom": {
       label: "Антихром",
       items: [
-        { id:"ah1", title:"Оконные молдинги",        sub:"В цвет кузова или чёрный",              price:{S:8000,M:9500,L:11000,XL:13000},   dur:"4 часа" },
-        { id:"ah2", title:"Решётка радиатора",       sub:"Перекрас хрома в цвет кузова",          price:{S:4500,M:5000,L:5500,XL:6500},     dur:"2 часа" },
-        { id:"ah3", title:"Комплект «весь хром»",    sub:"Молдинги, решётка, эмблемы, патрубки",  price:{S:18000,M:22000,L:26000,XL:32000}, dur:"1 день" },
+        { id:"ah1", title:"Отдельные элементы",      sub:"Молдинги, решётка или эмблемы — по элементам", price:{S:35000,M:45000,L:55000,XL:70000},      dur:"1–2 дня" },
+        { id:"ah2", title:"Комплект «внешний хром»", sub:"Молдинги + решётка + ручки",            price:{S:110000,M:130000,L:150000,XL:180000}, dur:"3–4 дня" },
+        { id:"ah3", title:"Полный антихром",         sub:"Весь хром снимаем и красим в цвет кузова или чёрный", price:{S:180000,M:210000,L:240000,XL:280000}, dur:"5–7 дней" },
       ],
     },
     "dooosnaschenie": {
@@ -229,5 +229,21 @@ window.GIDRAZIL = (function () {
     "antihrom":            [{ f:"antihrom-posle-1.jpg", b:"после" }, { f:"antihrom-do-1.jpg", b:"до" }, { f:"antihrom-posle-2.jpg", b:"после" }, { f:"antihrom-do-2.jpg", b:"до" }],
   };
 
-  return { services, promos, carBrands, carModels, sizeClass, priceMatrix, extras, gallery };
+  // per-service detailed description + process steps (falls back to generic if absent)
+  const details = {
+    "antihrom": {
+      intro: [
+        "Антихром — снятие хрома и покраска. Хромированные элементы приводим к цвету кузова или в чёрный: получается стойко и «монолитно», без блестящих вставок.",
+      ],
+      steps: [
+        { title: "Разбор и снятие деталей", sub: "Демонтируем хромированные элементы с автомобиля." },
+        { title: "Удаление хрома",          sub: "Химическое травление специальными реагентами." },
+        { title: "Подготовка поверхности",  sub: "Грунтуем, при необходимости шпатлюем." },
+        { title: "Покраска и лак",          sub: "Красим в цвет кузова или чёрный, покрываем лаком." },
+      ],
+      note: "Плюсы: долговечно и монолитно выглядит.",
+    },
+  };
+
+  return { services, promos, carBrands, carModels, sizeClass, priceMatrix, extras, gallery, details };
 })();

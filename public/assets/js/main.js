@@ -325,13 +325,15 @@
     order.forEach(slug => {
       (D.gallery[slug] || []).forEach(p => tiles.push({ slug, title: titleBySlug[slug] || slug, f: p.f, b: p.b }));
     });
-    box.innerHTML = tiles.map(t => `
-      <a class="work-card" href="${BASE}/service?s=${t.slug}">
+    box.innerHTML = tiles.map(t => {
+      const size = t.b === 'после' ? 'after' : t.b === 'до' ? 'before' : '';
+      return `
+      <a class="work-card ${size}" href="${BASE}/service?s=${t.slug}">
         <img loading="lazy" src="${BASE}/assets/img/works/${t.f}" alt="${t.title}">
         ${t.b ? `<span class="work-badge">${t.b}</span>` : ''}
         <span class="work-label">${t.title}</span>
-      </a>
-    `).join('');
+      </a>`;
+    }).join('');
   }
 
   // ───────────────────────────────
@@ -350,6 +352,29 @@
     root.querySelector('[data-svc-title]').textContent = svc.title.toUpperCase();
     root.querySelector('[data-svc-short]').textContent = svc.short;
     root.querySelector('[data-crumb-name]').textContent = svc.title;
+
+    // per-service description + process steps
+    const det = (D.details && D.details[slug]) || null;
+    if (det) {
+      const descBox = root.querySelector('[data-svc-desc]');
+      if (descBox && det.intro) {
+        descBox.innerHTML = det.intro.map(p => `<p style="margin-top:16px">${p}</p>`).join('')
+          + (det.note ? `<p style="margin-top:16px;color:var(--accent)">${det.note}</p>` : '');
+      }
+      const stepsBox = root.querySelector('[data-svc-steps]');
+      if (stepsBox && det.steps) {
+        stepsBox.innerHTML = det.steps.map((s, i) => `
+          <div class="row">
+            <span class="n">${String(i+1).padStart(2,'0')}</span>
+            <div class="t">
+              <div class="title">${s.title}</div>
+              <div class="sub">${s.sub}</div>
+            </div>
+            ${s.v ? `<span class="v">${s.v}</span>` : ''}
+          </div>
+        `).join('');
+      }
+    }
 
     // related
     const idx = D.services.findIndex(x => x.slug === slug);

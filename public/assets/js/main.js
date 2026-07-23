@@ -411,28 +411,23 @@
       teaserBox.innerHTML = `<p class="lede" style="color:var(--text-3)">Прайс рассчитываем индивидуально по фотографиям и осмотру — оставьте заявку, ответим в течение 15 минут.</p>`;
     }
 
-    // gallery: real photos if available, otherwise line-art placeholders
-    const photos = (D.gallery && D.gallery[slug]) || [];
-    const photoEls = root.querySelectorAll('.svc-photo');
-    if (photos.length && photoEls.length) {
-      photoEls.forEach((el, i) => {
-        const p = photos[i % photos.length];
-        el.classList.add('has-photo');
-        const img = document.createElement('img');
-        img.className = 'svc-photo-img';
-        img.loading = 'lazy';
-        img.src = `${BASE}/assets/img/works/${p.f}`;
-        img.alt = svc.title;
-        el.insertBefore(img, el.firstChild);
-        if (p.b) {
-          const badge = document.createElement('span');
-          badge.className = 'work-badge';
-          badge.textContent = p.b;
-          el.appendChild(badge);
-        }
-      });
-    } else {
-      root.querySelectorAll('[data-svc-art]').forEach(el => { el.innerHTML = artSVG(slug); });
+    // gallery: real photos sized by role — «после» large (col-8), «до» small (col-4)
+    const galleryBox = root.querySelector('[data-svc-gallery]');
+    if (galleryBox) {
+      const photos = (D.gallery && D.gallery[slug]) || [];
+      if (photos.length) {
+        galleryBox.innerHTML = photos.map(p => {
+          const col = p.b === 'после' ? 'col-8' : p.b === 'до' ? 'col-4' : 'col-6';
+          return `
+            <div class="svc-photo ${col} has-photo">
+              <img class="svc-photo-img" loading="lazy" src="${BASE}/assets/img/works/${p.f}" alt="${svc.title}">
+              ${p.b ? `<span class="work-badge">${p.b}</span>` : ''}
+            </div>`;
+        }).join('');
+      } else {
+        galleryBox.innerHTML = [8, 4, 4, 8].map(c => `
+          <div class="svc-photo col-${c}"><span>${artSVG(slug)}</span></div>`).join('');
+      }
     }
 
     // pre-select service in booking form if present

@@ -33,7 +33,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <span class="dot" aria-hidden="true"></span>
         +7 999 551 6777
       </a>
-      <a class="btn btn-primary btn-sm arrow-after" href={`${base}/#booking`}>Запись</a>
+      <a class="btn btn-primary btn-sm arrow-after" href={`${base}/#contacts`}>Контакты</a>
     </div>
   </div>
 </header>
@@ -67,7 +67,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <div class="v">5 лет</div>
           <div class="l">гарантия</div>
         </div>
-        <a class="btn btn-accent btn-lg arrow-after" href={`${base}/#booking`}>Записаться</a>
+        <a class="btn btn-accent btn-lg arrow-after" href={`${base}/#contacts`}>Связаться</a>
       </div>
     </div>
   </section>
@@ -163,7 +163,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div class="shell-wide">
       <div class="section-head">
         <div class="left">
-          <div class="eyebrow">Прайс по этой услуге <span class="dot">·</span> <span class="accent">от размера S</span></div>
+          <div class="eyebrow">Прайс по этой услуге <span class="dot">·</span> <span class="accent">класс 1 · обычное авто</span></div>
           <h2>Сколько стоит</h2>
         </div>
         <div class="right">
@@ -178,10 +178,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <section class="block tight">
     <div class="shell-wide">
       <div class="svc-cta">
-        <span class="eyebrow" style="color:rgba(255,255,255,0.6)"><span class="accent" style="color:#d7b16a">Записаться</span> <span class="dot">·</span> ответ в МАХ за 15 мин</span>
+        <span class="eyebrow" style="color:rgba(255,255,255,0.6)"><span class="accent" style="color:#d7b16a">Связаться</span> <span class="dot">·</span> ответ в МАХ за 15 мин</span>
         <h3>Готовы — пишите. Сомневаетесь — приезжайте на бесплатный осмотр.</h3>
         <div class="row">
-          <a class="btn btn-accent btn-lg arrow-after" href={`${base}/#booking`}>Записаться онлайн</a>
+          <a class="btn btn-accent btn-lg arrow-after" href={`${base}/#contacts`}>Контакты</a>
           <a class="btn btn-ghost btn-lg" href="tel:+79995516777" style="color:#fff;border-color:rgba(255,255,255,0.25)">+7 999 551 6777</a>
         </div>
       </div>
@@ -222,27 +222,34 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <ul>
           <li class="contact-line"><a href="tel:+79995516777">+7 999 551 6777</a></li>
           <li><a href="mailto:info@hydrazil.ru">info@hydrazil.ru</a></li>
-          <li style="font-family:var(--mono);font-size:13px;color:rgba(244,243,239,0.6);margin-top:8px">Ежедневно 09:00 – 21:00</li>
+          <li style="font-family:var(--mono);font-size:13px;color:rgba(244,243,239,0.6);margin-top:8px">Ежедневно, круглосуточно</li>
         </ul>
       </div>
 
       <div>
         <h4>Мессенджеры</h4>
         <ul>
-          <li>МАХ: <span style="font-family:var(--mono)">+7 901 343 69 36</span></li>
+          <li>МАХ: <span style="font-family:var(--mono)">+7 910 113 77 26</span></li>
           <li>Telegram: <a href="https://t.me/HydraZIL" target="_blank" rel="noopener" style="font-family:var(--mono)">@HydraZIL</a></li>
         </ul>
       </div>
 
       <div>
         <h4>Где мы</h4>
-        <div class="map" aria-label="Карта (плейсхолдер)">
-          <div class="pin">
-            <span class="ring" aria-hidden="true"></span>
-            <span>Бульвар Братьев Весниных, 1</span>
-            <span style="opacity:0.5;margin-top:2px">−1 этаж · заезд через КПП</span>
-          </div>
+        <div class="map">
+          <iframe
+            title="Карта проезда к студии Гидразил"
+            src="https://yandex.ru/map-widget/v1/?mode=search&amp;text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%B1%D1%83%D0%BB%D1%8C%D0%B2%D0%B0%D1%80%20%D0%91%D1%80%D0%B0%D1%82%D1%8C%D0%B5%D0%B2%20%D0%92%D0%B5%D1%81%D0%BD%D0%B8%D0%BD%D1%8B%D1%85%2C%201&amp;z=16"
+            width="100%"
+            height="220"
+            frameborder="0"
+            allowfullscreen="true"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin">
+          </iframe>
         </div>
+        <a class="map-link" href="https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%B1%D1%83%D0%BB%D1%8C%D0%B2%D0%B0%D1%80%20%D0%91%D1%80%D0%B0%D1%82%D1%8C%D0%B5%D0%B2%20%D0%92%D0%B5%D1%81%D0%BD%D0%B8%D0%BD%D1%8B%D1%85%2C%201" target="_blank" rel="noopener">Бульвар Братьев Весниных, 1 · открыть маршрут</a>
+        <p class="map-note">−1 этаж · заезд через КПП</p>
       </div>
     </div>
 
@@ -256,5 +263,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <script is:inline define:vars={{ base }}>window.SITE_BASE = base;</script>
 <script is:inline src={`${base}/assets/js/data.js`}></script>
 <script is:inline src={`${base}/assets/js/main.js`}></script>
+<script is:inline type="text/javascript" src="https://w2666148.yclients.ru/widgetJS" charset="UTF-8"></script>
 </body>
 </html>

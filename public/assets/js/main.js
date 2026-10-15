@@ -112,16 +112,19 @@
     if (!root) return;
     const brandBox = root.querySelector('[data-brands]');
     const modelBox = root.querySelector('[data-models]');
+    const categoryBox = root.querySelector('[data-price-categories]');
     const tabsBox = root.querySelector('[data-svc-tabs]');
     const tableBox = root.querySelector('[data-table]');
     const totalEl = root.querySelector('[data-total]');
     const currentBrandEl = root.querySelector('[data-current-brand]');
     const currentModelEl = root.querySelector('[data-current-model]');
+    const currentCategoryEl = root.querySelector('[data-current-category]');
     const currentSvcEl = root.querySelector('[data-current-svc]');
 
     const state = {
       brand: "BMW",
       model: "5 серии",
+      category: 1,
       svcKey: "moyka",
       selected: new Set(),
     };
@@ -143,7 +146,7 @@
     function renderModels() {
       const models = D.carModels[state.brand] || [];
       modelBox.innerHTML = models.map(m => `
-        <button class="model-chip ${m===state.model?'active':''}" data-model="${m}">${m} <span class="mono" style="font-size:11px;color:inherit;opacity:0.55;margin-left:8px">К${D.sizeClass[m]||3}</span></button>
+        <button class="model-chip ${m===state.model?'active':''}" data-model="${m}">${m}</button>
       `).join('');
       currentBrandEl.textContent = state.brand;
       currentModelEl.textContent = state.model;
@@ -153,6 +156,23 @@
       if (!btn) return;
       state.model = btn.dataset.model;
       renderModels();
+      renderTable();
+    });
+
+    function renderCategories() {
+      categoryBox.innerHTML = D.priceCategories.map(c => `
+        <button class="model-chip price-category-chip ${c.id===state.category?'active':''}" data-price-category="${c.id}">
+          <span>${c.label}</span><small>${c.description}</small>
+        </button>
+      `).join('');
+      const category = D.priceCategories.find(c => c.id === state.category);
+      currentCategoryEl.textContent = category.label;
+    }
+    categoryBox.addEventListener('click', e => {
+      const btn = e.target.closest('[data-price-category]');
+      if (!btn) return;
+      state.category = Number(btn.dataset.priceCategory);
+      renderCategories();
       renderTable();
     });
 
@@ -171,7 +191,7 @@
     });
 
     function renderTable() {
-      const size = D.sizeClass[state.model] || 3;
+      const category = state.category;
       const svc = D.priceMatrix[state.svcKey];
       currentSvcEl.textContent = svc.label;
 
@@ -181,18 +201,18 @@
             <tr>
               <th style="width:46px"></th>
               <th>Услуга</th>
-              <th style="text-align:right">Цена · К${size}</th>
+              <th style="text-align:right">Цена · Класс ${category}</th>
             </tr>
           </thead>
           <tbody>
             ${svc.items.map((it, i) => `
               <tr>
-                <td><input type="checkbox" data-item="${it.id}" ${state.selected.has(it.id)?'checked':''} style="width:18px;height:18px;accent-color:var(--accent)"></td>
+                <td>${it.included ? '' : `<input type="checkbox" data-item="${it.id}" ${state.selected.has(it.id)?'checked':''} style="width:18px;height:18px;accent-color:var(--accent)">`}</td>
                 <td>
                   <div class="item-title">${it.title}</div>
                   ${it.sub ? `<div class="item-meta">${it.sub}</div>` : ''}
                 </td>
-                <td class="amount">${it.from?'от ':''}${formatN(it.price[size])} ₽</td>
+                <td class="amount">${it.included ? 'Входит в комплекс' : it.price[category] == null ? 'Уточнить' : `${it.from?'от ':''}${formatN(it.price[category])} ₽`}</td>
               </tr>
             `).join('')}
           </tbody>
@@ -208,15 +228,19 @@
       updateTotal();
     }
     function updateTotal() {
-      const size = D.sizeClass[state.model] || 3;
       const svc = D.priceMatrix[state.svcKey];
       const chosen = svc.items.filter(it => state.selected.has(it.id));
-      const sum = chosen.reduce((a, b) => a + b.price[size], 0);
+      if (chosen.some(it => it.price[state.category] == null)) {
+        totalEl.textContent = 'Уточнить стоимость';
+        return;
+      }
+      const sum = chosen.reduce((a, b) => a + b.price[state.category], 0);
       const anyFrom = chosen.some(it => it.from);
       totalEl.textContent = (anyFrom ? 'от ' : '') + formatN(sum) + ' ₽';
     }
 
     renderModels();
+    renderCategories();
     renderTable();
   }
 
@@ -247,40 +271,6 @@
         </div>
       </article>
     `).join('');
-  }
-
-  // ───────────────────────────────
-  // BOOKING FORM
-  // ───────────────────────────────
-  function initBooking() {
-    const form = document.querySelector('[data-booking]');
-    if (!form) return;
-    const dateInput = form.querySelector('input[name="date"]');
-    if (dateInput) {
-      const tom = new Date(); tom.setDate(tom.getDate()+1);
-      dateInput.min = new Date().toISOString().split('T')[0];
-      dateInput.value = tom.toISOString().split('T')[0];
-    }
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const status = form.querySelector('[data-status]');
-      const submit = form.querySelector('button[type="submit"]');
-      submit.disabled = true;
-      submit.textContent = "Отправляем в МАХ…";
-      setTimeout(() => {
-        submit.disabled = false;
-        submit.textContent = "Отправлено ✓";
-        if (status) {
-          status.style.display = 'block';
-          status.textContent = "Заявка отправлена в МАХ. Менеджер ответит в течение 15 минут.";
-        }
-        setTimeout(() => {
-          submit.textContent = "Записаться";
-          if (status) status.style.display = 'none';
-          form.reset();
-        }, 4500);
-      }, 800);
-    });
   }
 
   // ───────────────────────────────
@@ -390,7 +380,7 @@
       </a>
     `).join('');
 
-    // pricing teaser (use matrix M size if exists)
+    // pricing teaser (show class 1 prices)
     const teaserBox = root.querySelector('[data-price-teaser]');
     if (matrix && teaserBox) {
       teaserBox.innerHTML = `
@@ -402,13 +392,13 @@
                 <div class="title">${it.title}</div>
                 ${it.sub ? `<div class="sub">${it.sub}</div>` : ''}
               </div>
-              <span class="v">от ${formatN(it.price[1])} ₽</span>
+              <span class="v">${it.included ? 'Входит в комплекс' : it.price[1] == null ? 'Уточнить' : `${it.from ? 'от ' : ''}${formatN(it.price[1])} ₽`}</span>
             </div>
           `).join('')}
         </div>
       `;
     } else if (teaserBox) {
-      teaserBox.innerHTML = `<p class="lede" style="color:var(--text-3)">Прайс рассчитываем индивидуально по фотографиям и осмотру — оставьте заявку, ответим в течение 15 минут.</p>`;
+      teaserBox.innerHTML = `<p class="lede" style="color:var(--text-3)">Стоимость рассчитываем индивидуально по фотографиям и осмотру — свяжитесь с нами, ответим в течение 15 минут.</p>`;
     }
 
     // gallery: real photos sized by role — «после» large (col-8), «до» small (col-4)
@@ -430,11 +420,6 @@
       }
     }
 
-    // pre-select service in booking form if present
-    const svcInput = root.querySelector('select[name="service"]');
-    if (svcInput) {
-      svcInput.value = slug;
-    }
   }
 
   // ───────────────────────────────
@@ -553,7 +538,6 @@
     initCarousel();
     initPricing();
     initExtras();
-    initBooking();
     initServicePage();
     initYear();
     initReveal();

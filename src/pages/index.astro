@@ -34,7 +34,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <span class="dot" aria-hidden="true"></span>
         +7 999 551 6777
       </a>
-      <a class="btn btn-primary btn-sm arrow-after" href="#booking">Запись</a>
+      <a class="btn btn-primary btn-sm arrow-after" href="#contacts">Контакты</a>
     </div>
   </div>
 </header>
@@ -52,7 +52,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       </p>
 
       <div class="hero-cta reveal" data-reveal="3">
-        <a class="btn btn-accent btn-lg arrow-after" href="#booking">Записаться</a>
+        <a class="btn btn-accent btn-lg arrow-after" href="#contacts">Связаться</a>
         <a class="btn btn-ghost btn-lg" href="#pricing">Рассчитать стоимость</a>
       </div>
     </div>
@@ -138,7 +138,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <div class="left">
         <div class="eyebrow">Прайс <span class="dot">·</span> <span class="accent">Москва 2026</span></div>
         <h2>Стоимость <br />по вашей машине</h2>
-        <p class="lede">Выберите марку, модель и услугу — увидите цену сразу. Чекбоксами набирайте корзину, она пересчитывает итог.</p>
+        <p class="lede">Выберите марку, модель, категорию автомобиля и услугу — увидите цены из прайс-листа. Чекбоксами набирайте корзину, она пересчитывает итог.</p>
       </div>
     </div>
 
@@ -165,6 +165,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <div class="price-step">
         <div class="step-head">
           <span class="step-num">03</span>
+          <span class="step-title">Категория автомобиля</span>
+          <span class="step-current" data-current-category></span>
+        </div>
+        <div class="model-row" data-price-categories></div>
+      </div>
+
+      <div class="price-step">
+        <div class="step-head">
+          <span class="step-num">04</span>
           <span class="step-title">Услуга</span>
           <span class="step-current" data-current-svc></span>
         </div>
@@ -176,8 +185,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             Итого по корзине: <b data-total>0 ₽</b>
           </div>
           <div style="display:flex;gap:12px">
-            <a class="btn btn-ghost" href="#booking">Записаться позже</a>
-            <a class="btn btn-accent arrow-after" href="#booking">Записать на эту цену</a>
+            <a class="btn btn-ghost" href="#contacts">Уточнить цену</a>
+            <a class="btn btn-accent arrow-after" href="#contacts">Обсудить услугу</a>
           </div>
         </div>
       </div>
@@ -185,9 +194,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </div>
 
     <p class="body-sm" style="margin-top:18px;max-width:680px">
-      Класс зависит от модели: <span class="mono">К1</span> — компакт (A-class), <span class="mono">К3</span> — E-class / GLC,
-      <span class="mono">К5</span> — GLS / X7 / Range Rover, <span class="mono">К6</span> — G-class, спорткары, Bentley и подобные.
-      Часть услуг (бронирование стекла, шумоизоляция, антихром, дооснащение) рассчитываем индивидуально.
+      <span class="mono">Класс 1</span> — обычные автомобили. <span class="mono">Класс 2</span> — 7-местные автомобили (GLS, X7, Range Rover и подобные) и автобусы.
+      Если цена для выбранного класса не указана в прайсе, калькулятор покажет «Уточнить».
     </p>
   </div>
 </section>
@@ -201,123 +209,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <h2>До <span style="font-family:var(--mono);font-size:0.7em;letter-spacing:-0.02em;color:var(--text-2);font-weight:400">→</span> после</h2>
       </div>
       <div class="right">
-        <a class="btn btn-ghost arrow-after" href="#booking">Прислать своё авто</a>
+        <a class="btn btn-ghost arrow-after" href="https://t.me/HydraZIL" target="_blank" rel="noopener">Прислать своё авто</a>
       </div>
     </div>
 
     <div class="works-grid" data-works></div>
-  </div>
-</section>
-
-<!-- ─────────────────────────  BOOKING  ───────────────────────── -->
-<section class="block" id="booking">
-  <div class="shell-wide">
-    <div class="section-head">
-      <div class="left">
-        <div class="eyebrow">Записаться <span class="dot">·</span> <span class="accent">Ответ в МАХ за 15 мин</span></div>
-        <h2>Оставьте заявку</h2>
-      </div>
-    </div>
-
-    <div class="booking">
-      <aside class="left">
-        <div>
-          <span class="chip chip-accent" style="background:rgba(255,255,255,0.10);color:#fff">
-            <span class="dot"></span> онлайн-запись
-          </span>
-          <h3 style="margin-top:18px">Заявка приходит<br />нашему мастеру в МАХ</h3>
-          <p class="body-sm" style="color:rgba(255,255,255,0.7);margin-top:14px;max-width:36ch">
-            Мы перезваниваем в течение 15 минут в рабочие часы и не больше часа в выходные.
-            Подбираем удобный слот и закрепляем за вами бокс.
-          </p>
-        </div>
-
-        <ul class="lines">
-          <li>Бесконтактная передача ключа</li>
-          <li>Курьер в пределах ТТК — бесплатно</li>
-          <li>Оплата при выдаче, наличными или картой</li>
-          <li>Если передумали — отмена за 2 часа без потерь</li>
-        </ul>
-
-        <div class="max-line">
-          <span>МАХ:</span>
-          <strong>+7 901 343 69 36</strong>
-        </div>
-      </aside>
-
-      <form class="right" data-booking>
-        <div class="field-row">
-          <div class="field">
-            <label for="name">Имя</label>
-            <input id="name" name="name" type="text" placeholder="Как к вам обращаться" required />
-          </div>
-          <div class="field">
-            <label for="phone">Телефон</label>
-            <input id="phone" name="phone" type="tel" placeholder="+7 ___ ___ __ __" required pattern="[\+\d\s\(\)\-]{7,}" />
-          </div>
-        </div>
-
-        <div class="field-row">
-          <div class="field">
-            <label for="service">Услуга</label>
-            <select id="service" name="service">
-              <option value="">— выберите —</option>
-              <option value="moyka">Мойка автомобиля</option>
-              <option value="himchistka">Химчистка салона</option>
-              <option value="zashita-salona">Защита салона автомобиля</option>
-              <option value="polirovka">Полировка кузова</option>
-              <option value="keramika">Нанесение керамики на кузов</option>
-              <option value="okleyka">Оклейка автомобиля</option>
-              <option value="bronirovanie-stekla">Бронирование лобового стекла</option>
-              <option value="tonirovka">Тонировка</option>
-              <option value="shumoizolyatsiya">Шумоизоляция автомобиля</option>
-              <option value="antihrom">Антихром</option>
-              <option value="dooosnaschenie">Дооснащение автомобиля</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="car">Авто</label>
-            <input id="car" name="car" type="text" placeholder="BMW X5, 2023" />
-          </div>
-        </div>
-
-        <div class="field-row">
-          <div class="field">
-            <label for="date">Дата</label>
-            <input id="date" name="date" type="date" />
-          </div>
-          <div class="field">
-            <label for="time">Время</label>
-            <select id="time" name="time">
-              <option>09:00</option><option>10:30</option><option>12:00</option>
-              <option>13:30</option><option>15:00</option><option>16:30</option>
-              <option>18:00</option><option>19:30</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="message">Сообщение</label>
-          <textarea id="message" name="message" placeholder="Опишите задачу: состояние авто, пожелания, ограничения по времени."></textarea>
-        </div>
-
-        <label class="consent">
-          <input type="checkbox" required style="accent-color:var(--accent)" />
-          <span>
-            Согласен на обработку персональных данных, ознакомлен с
-            <a href="#" style="color:var(--accent);text-decoration:underline">политикой конфиденциальности</a>.
-            Заявка будет передана в МАХ оператору студии.
-          </span>
-        </label>
-
-        <div class="booking-foot">
-          <span class="body-sm">Ответ — в МАХ или звонком, как удобнее.</span>
-          <button type="submit" class="btn btn-accent btn-lg arrow-after">Записаться</button>
-        </div>
-
-        <div data-status class="body-sm" style="display:none;color:var(--accent);margin-top:6px"></div>
-      </form>
-    </div>
   </div>
 </section>
 
@@ -340,14 +236,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <ul>
           <li class="contact-line"><a href="tel:+79995516777">+7 999 551 6777</a></li>
           <li><a href="mailto:info@hydrazil.ru">info@hydrazil.ru</a></li>
-          <li style="font-family:var(--mono);font-size:13px;color:rgba(244,243,239,0.6);margin-top:8px">Ежедневно 09:00 – 21:00</li>
+          <li style="font-family:var(--mono);font-size:13px;color:rgba(244,243,239,0.6);margin-top:8px">Ежедневно, круглосуточно</li>
         </ul>
       </div>
 
       <div>
         <h4>Мессенджеры</h4>
         <ul>
-          <li>МАХ: <span style="font-family:var(--mono)">+7 901 343 69 36</span></li>
+          <li>МАХ: <span style="font-family:var(--mono)">+7 910 113 77 26</span></li>
           <li>Telegram: <a href="https://t.me/HydraZIL" target="_blank" rel="noopener" style="font-family:var(--mono)">@HydraZIL</a></li>
           <li>WhatsApp: <span style="font-family:var(--mono)">+7 999 551 6777</span></li>
         </ul>
@@ -355,13 +251,20 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
       <div>
         <h4>Где мы</h4>
-        <div class="map" aria-label="Карта (плейсхолдер)">
-          <div class="pin">
-            <span class="ring" aria-hidden="true"></span>
-            <span>Бульвар Братьев Весниных, 1</span>
-            <span style="opacity:0.5;margin-top:2px">−1 этаж · заезд через КПП</span>
-          </div>
+        <div class="map">
+          <iframe
+            title="Карта проезда к студии Гидразил"
+            src="https://yandex.ru/map-widget/v1/?mode=search&amp;text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%B1%D1%83%D0%BB%D1%8C%D0%B2%D0%B0%D1%80%20%D0%91%D1%80%D0%B0%D1%82%D1%8C%D0%B5%D0%B2%20%D0%92%D0%B5%D1%81%D0%BD%D0%B8%D0%BD%D1%8B%D1%85%2C%201&amp;z=16"
+            width="100%"
+            height="220"
+            frameborder="0"
+            allowfullscreen="true"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin">
+          </iframe>
         </div>
+        <a class="map-link" href="https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%B1%D1%83%D0%BB%D1%8C%D0%B2%D0%B0%D1%80%20%D0%91%D1%80%D0%B0%D1%82%D1%8C%D0%B5%D0%B2%20%D0%92%D0%B5%D1%81%D0%BD%D0%B8%D0%BD%D1%8B%D1%85%2C%201" target="_blank" rel="noopener">Бульвар Братьев Весниных, 1 · открыть маршрут</a>
+        <p class="map-note">−1 этаж · заезд через КПП</p>
       </div>
     </div>
 
@@ -375,5 +278,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <script is:inline define:vars={{ base }}>window.SITE_BASE = base;</script>
 <script is:inline src={`${base}/assets/js/data.js`}></script>
 <script is:inline src={`${base}/assets/js/main.js`}></script>
+<script is:inline type="text/javascript" src="https://w2666148.yclients.ru/widgetJS" charset="UTF-8"></script>
 </body>
 </html>
